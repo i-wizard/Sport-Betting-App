@@ -1,0 +1,50 @@
+@import '../components/variables';
+
+.card {
+  border: 1px solid #dedede !important;
+  background-color: #ffffff;
+  -webkit-box-shadow: 0 3px 10px 3px rgba(55, 107, 255, 0.1);
+  box-shadow: 0 3px 10px 3px rgba(55, 107, 255, 0.1);
+}
+
+.card + .card {
+  margin-top: 30px;
+}
+
+.card-header {
+  padding: 0;
+  border: none;
+  background-color: #ffffff;
+}
+
+.card-header .btn-link {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font-size: 20px;
+  font-weight: 700;
+  color: $site-primary-color;
+  padding: 12px 50px 12px 20px;
+}
+
+.card-header .btn-link[aria-expanded="true"] i {
+  color: $secondary-color-shim;
+}
+
+.card-header .btn-link i {
+  margin-right: 10px;
+}
+
+.card-header .btn-link:hover,
+.card-header .btn-link:focus {
+  text-decoration: none;
+}
+
+.cmn-accordion .card-body {
+  padding: 0 55px 20px 55px;
+  font-size: 14px;
+}
+
+ul.list-styled {
+  list-style-type: circle !important;
+}

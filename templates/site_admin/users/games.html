@@ -1,0 +1,87 @@
+{% extends "site_admin/layouts/base.html" %}
+{% block page_title %}Admin - {{ user.username }}'s Games {% endblock %}
+{% load humanize %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div {% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %}>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <i class="material-icons">close</i>
+                            </button>
+                            <span>
+                                {{ message }}
+                            </span>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+
+                <div class="clearfix"></div>
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title ">Slips</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                <th>
+                                    S/N
+                                </th>
+                                <th>
+                                    Slip Token
+                                </th>
+                                <th>
+                                    Score
+                                </th>
+                                <th>
+                                    Stake
+                                </th>
+                                <th>
+                                    Outcome
+                                </th>
+                                <th>
+                                    Amount Won
+                                </th>
+                                <th>
+                                    Played At
+                                </th>
+                                <th>
+                                    Action
+                                </th>
+                                </thead>
+                                <tbody>
+                                {% for slip in slips %}
+                                    <tr>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>{{ slip.slip_token }}</td>
+                                        <td>{{ slip.score }}</td>
+                                        <td>&#8358; {{ slip.stake }}</td>
+                                        {% if slip.game_fate == 0 %}
+                                            <td>Ongoing</td>
+                                        {% elif slip.game_fate == 1 %}
+                                            <td>Won</td>
+                                        {% elif slip.game_fate == 2 %}
+                                            <td>Lose</td>
+                                        {% endif %}
+                                        <td>&#8358; {{ slip.amount_won }}</td>
+                                        <td>{{ slip.played_at|date:"d M Y, H:i" }}</td>
+                                        <td><a href="{% url 'myadmin:bet_slip' slip.id %}" class="btn btn-primary btn-sm">See slip</a></td>
+                                    </tr>
+                                {% empty %}
+                                    <tr>
+                                        <td colspan="100%" class="text-center">No bets available</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

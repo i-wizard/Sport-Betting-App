@@ -1,0 +1,312 @@
+{% load static %}
+{% load site_utils %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-145422464-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-145422464-1');
+</script>
+<!-- Facebook Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '250944352516468');
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=250944352516468&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
+    <meta charset="UTF-8">
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#000321">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#000321">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <meta name="keywords"
+          content="Topplaysport rewarding top players, lottery, sport, soccer, gaming, prediction, gambling, football, topplaysport, money, cash, bonus, referral, Topplaysport is a competitive soccer prediction site">
+    <meta name="description"
+          content="Topplaysport is a competitive soccer prediction site where participants compete against themselves for a share in guaranteed 100,000 naira daily cash reward. They do this by predicting the outcome of 10 soccer games, with each correct prediction having a value of four (4) points, so a correct prediction in all 10 games results in 40points. The Top ten users with the highest point for the day get to have a share in the 100,000 naira daily cash reward.">
+    <meta name="author" content="{% site_name %}">
+    <meta name="robot" content="index, follow">
+    <meta name="copyright" content="Copyright © {% now "Y" %} {% site_name %}. All Rights Reserved.">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="1 days">
+    <meta property="og:image" content="{% static 'images/bg/banner-1-1.jpg' %}"/>
+    <meta property="og:image:type" content="image/png"/>
+    {% if ref %}
+        <meta property="og:description"
+              content="Come and join me and earn some cool cash on Topplaysport.com. Register with referral code: {{ ref }}"/>
+        <meta property="og:title" content="Want to be the next winner?"/>
+        <meta property="og:url"
+              content="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{{ request.get_absolute_url }}/ref/{{ ref }}"/>
+    {% else %}
+        <meta property="og:url"
+              content="{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{{ request.get_absolute_url }}"/>
+        <meta property="og:description"
+              content="Topplaysport is a competitive soccer prediction site where participants compete against themselves for a share in guaranteed 100,000 naira daily cash reward. They do this by predicting the outcome of 10 soccer games, with each correct prediction having a value of four (4) points, so a correct prediction in all 10 games results in 40points. The Top ten users with the highest point for the day get to have a share in the 100,000 naira daily cash reward."/>
+        <meta property="og:title" content="Topplaysports rewarding top players"/>
+    {% endif %}
+    <meta property="fb:app_id" content=""/>
+    <meta property="og:site_name" content="{% site_name %}"/>
+    <meta property="og:type" content="website"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <title>{% block page_title %} Welcome{% endblock %}</title>
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon"/>
+    <link href="//fonts.googleapis.com/css?family=Kanit:300,400,500,500i,600%7CRoboto:400,900" rel="stylesheet"
+          type="text/css">
+    <link href="{% static 'css/app.css' %}" rel="stylesheet" type="text/css" media="all">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/fonts.css' %}" media="all">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" media="all">
+    {% block latter_style %}{% endblock %}
+    <script src="{% static 'js/modernizr.min.js' %}" type="text/javascript"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+<script>
+    window.addEventListener("load", function () {
+        window.cookieconsent.initialise({
+            "palette": {
+                "popup": {
+                    "background": "#252e39"
+                },
+                "button": {
+                    "background": "#14a7d0"
+                }
+            },
+            "theme": "classic"
+        })
+    });
+</script>
+<body>
+<div id="app">
+    <div id="preloader">
+        <div class="preloader-body">
+            <div class="preloader-item"></div>
+        </div>
+    </div>
+    <div class="page">
+        <!-- Page Header-->
+        <header class="section page-header rd-navbar-dark">
+            <!-- RD Navbar-->
+            <div class="rd-navbar-wrap">
+                <nav class="rd-navbar rd-navbar-classic" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed"
+                     data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed"
+                     data-lg-layout="rd-navbar-fixed" data-lg-device-layout="rd-navbar-fixed"
+                     data-xl-layout="rd-navbar-static" data-xl-device-layout="rd-navbar-static"
+                     data-xxl-layout="rd-navbar-static" data-xxl-device-layout="rd-navbar-static"
+                     data-lg-stick-up-offset="166px" data-xl-stick-up-offset="166px" data-xxl-stick-up-offset="166px"
+                     data-lg-stick-up="true" data-xl-stick-up="true" data-xxl-stick-up="true">
+                    <div class="rd-navbar-panel">
+                        <!-- RD Navbar Toggle-->
+                        <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-main"><span></span></button>
+                        <div class="rd-navbar-logo-secret md-query-mobile-h">
+                            <a href="/">
+                                <img src="{% static 'images/logos/logo-text.png' %}" alt=""/>
+                            </a>
+
+                        </div>
+                        <!-- RD Navbar Panel-->
+                        <div class="rd-navbar-panel-inner container">
+                            <div class="rd-navbar-panel-item rd-navbar-panel-item-left">
+                                {% if not user.is_authenticated %}
+                                    <ul class="list-inline list-inline-sm">
+                                        <li><a class="link link-classic" href="{% url 'LoginPage' %}"><span
+                                                class="icon fa fa-user"></span>&nbsp;Login</a></li>
+                                        <li><a class="link link-classic"
+                                               href="{% url 'RegistrationPage' %}"><span
+                                                class="icon fa fa-user-plus"></span>&nbsp;Register</a></li>
+                                    </ul>
+                                {% else %}
+                                    <ul class="list-inline list-inline-sm">
+                                        <li><a class="badge badge-secondary"
+                                               href="{% url 'account:details' %}">deposit</a></li>
+                                        <li>
+                                            <a class="badge badge-red"
+                                               href="{% url 'account:withdrawal' %}">withdraw</a>
+                                        </li>
+                                        <li class="md-query-pc-h"><a class="link link-classic"
+                                                                     href="{% url 'profilePage' %}">
+                                            <img src="{% get_media_prefix %}{{ user.profile_image }}" class="icon-img"/><span
+                                                class="md-query-pc-h classica-text">Profile</span></a></li>
+                                    </ul>
+                                {% endif %}
+                            </div>
+                            {% if user.is_authenticated %}
+                                <div class="rd-navbar-collapse rd-navbar-panel-item rd-navbar-panel-item-right">
+                                    <ul class="list-inline list-inline-bordered">
+                                        <li><a class="link link-classic" href="{% url 'account:details' %}"><span
+                                                s class="classica-amount md-query-mobile-h">Balance</span><span
+                                                class="md-query-pc-h">Balance:</span>
+                                            &#8358;&nbsp;{{ balance }}</a></li>
+                                        <li><a class="link link-classic" href="{% url 'account:details' %}"><span
+                                                class="classica-amount md-query-mobile-h">Bonus</span><span
+                                                class="md-query-pc-h"><span
+                                                class="icon fa fa-gift"></span>&nbsp;Bonus:</span>
+                                            &#8358;&nbsp;{{ bonus }}</a></li>
+                                        <li class="md-query-mobile-h"><a class="link link-classic"
+                                                                         href="{% url 'profilePage' %}">
+                                            <img src="{% get_media_prefix %}{{ user.profile_image }}" class="icon-img"/></a>
+                                        </li>
+                                        <li class=""><a class="link link-icon link-icon-left link-classic"
+                                                        href="{% url 'logoutPage' %}"><span
+                                                class="icon fl-bigmug-line-login12"></span><span class="link-icon-text">Logout</span></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                {#                                <div class="md-query-mobile-h"><a class="link link-icon link-icon-left link-classic"#}
+                                {#                                                                  href="{% url 'logoutPage' %}"><span#}
+                                {#                                        class="icon fl-bigmug-line-login12"></span><span#}
+                                {#                                        class="link-icon-text">Logout</span></a>#}
+                                {#                                </div>#}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="rd-navbar-main">
+                        <div class="rd-navbar-main-top">
+                            <div class="rd-navbar-main-container container">
+                                <!-- RD Navbar Brand-->
+                                <div class="rd-navbar-brand"><a class="brand" href="{% url 'HomePage' %}">
+                                    <img class="brand-logo md-query-pc-h" src="{% static 'images/logo-default.png' %}"
+                                         alt=""
+                                         width="107" height="41"/>
+                                    <img class="brand-logo md-query-mobile-h"
+                                         src="{% static 'images/logos/logo-75x75.png' %}"/>
+                                </a>
+                                </div>
+                                <!-- RD Navbar Search-->
+                                <div class="rd-navbar-search">
+                                    <button class="rd-navbar-search-toggle" data-rd-navbar-toggle=".rd-navbar-search">
+                                        <span></span></button>
+                                    <form class="rd-search" action="{% url 'slip_details_q' %}" method="GET">
+                                        <div class="form-wrap">
+                                            <label class="form-label" for="rd-navbar-search-form-input">Check game id
+                                                ...</label>
+                                            <input class="rd-navbar-search-form-input form-input"
+                                                   id="rd-navbar-search-form-input" type="text" name="q"
+                                                   autocomplete="off">
+                                        </div>
+                                        <button class="rd-search-form-submit fl-budicons-launch-search81"
+                                                type="submit"></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rd-navbar-main-bottom rd-navbar-darker">
+                            <div class="rd-navbar-main-container container">
+                                <!-- RD Navbar Nav-->
+                                <ul class="rd-navbar-nav">
+                                    <li class="rd-nav-item {% if request.path == '/' %}active{% endif %}"><a
+                                            class="rd-nav-link"
+                                            href="{% url 'HomePage' %}">Home</a>
+                                    </li>
+                                    <li class="rd-nav-item {% if request.path == '/how-to-play' %}active{% endif %}"><a
+                                            class="rd-nav-link"
+                                            href="{% url 'HowToPlay' %}">How to Play</a>
+                                    </li>
+                                    {% if user.is_authenticated and not user.is_staff %}
+                                        <li class="rd-nav-item md-query-mobile-h"><a
+                                                class="rd-nav-link"
+                                                href="{% url 'profilePage' %}">Profile</a>
+                                        </li>
+                                    {% endif %}
+                                    {% if user.is_authenticated and not user.is_staff %}
+                                        <li class="rd-nav-item {% if request.path == '/bets' %}active{% endif %}"><a
+                                                class="rd-nav-link"
+                                                href="{% url 'mybets' %}">My Games</a>
+                                        </li>
+                                    {% endif %}
+                                    {% if user.is_authenticated and not user.is_staff %}
+                                        <li class="rd-nav-item {% if request.path == '/referrals' %}active{% endif %}">
+                                            <a class="rd-nav-link"
+                                               href="{% url 'referral:index' %}">Get Bonus</a>
+                                        </li>
+                                    {% endif %}
+                                    <li class="rd-nav-item {% if request.path == '/bets/winners' %}active{% endif %}"><a
+                                            class="rd-nav-link" href="{% url 'winners_chart' %}">Winners
+                                        Chart</a>
+                                    </li>
+                                    <li class="rd-nav-item"><a class="rd-nav-link" href="{% url 'jackpot_winners' %}">Jackpot
+                                        Winners</a>
+                                    </li>
+                                    <li class="rd-nav-item md-query-mobile-h {% if request.path == '/support' %}active{% endif %}">
+                                        <a
+                                                class="rd-nav-link"
+                                                href="{% url 'Support' %}">Support</a>
+                                    </li>
+                                    <li class="rd-nav-item md-query-mobile-h {% if request.path == '/trivia' %}active{% endif %}">
+                                        <a
+                                                class="rd-nav-link"
+                                                href="{% url 'trivia:index' %}">Soccer Trivia</a>
+                                    </li>
+
+                                    <li class="rd-nav-item {% if request.path == '/faqs' %}active{% endif %}"><a
+                                            class="rd-nav-link" href="{% url 'Faqs' %}">FAQs</a>
+                                    </li>
+                                </ul>
+                                <div class="rd-navbar-main-element">
+                                    <ul class="list-inline list-inline-sm">
+                                        <li><a class="icon icon-xs fa fa-facebook"
+                                               href="https://web.facebook.com/pg/Topplaysport-104500274229137/posts/?ref=page_internal"></a>
+                                        </li>
+                                        <li><a class="icon icon-xs fa fa-twitter"
+                                               href="https://mobile.twitter.com/Topplaysport_"></a></li>
+                                        <li><a class="icon icon-xs fa fa-instagram"
+                                               href="https://www.instagram.com/topplaysport_/"></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        {% block content %}{% endblock %}
+
+        {% include "layouts/footer.html" %}
+    </div>
+</div>
+
+
+<!-- Scripts -->
+<script src="{% static 'js/app.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/core.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/script.js' %}" type="text/javascript"></script>
+{% block latter_js %}{% endblock %}
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    (function () {
+        var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = 'https://embed.tawk.to/5d4add29e5ae967ef80ee959/default';
+        s1.charset = 'UTF-8';
+        s1.setAttribute('crossorigin', '*');
+        s0.parentNode.insertBefore(s1, s0);
+    })();
+</script>
+<!--End of Tawk.to Script-->
+</body>
+</html>

@@ -1,0 +1,18 @@
+{% autoescape off %}
+    <img src="http://topplaysport.com/static/images/misc/mail-logo.png" alt="logo" width="200px" height="40px"
+         style="margin-left:auto;margin-right:auto;display:block;">
+    <div style="background-color:white;border:0.1px solid #000321;border-radius:10px 10px 0px 0px;padding:10px 14px;font-size: 15px;">
+        <h2 style="color:#ff4f2e;text-transform:uppercase;margin-left:5px">Congratulations!</h2>
+        <p>
+            You have qualified for the Topplay Free weekend giveaway where you stand a chance of being among 20 lucky
+            players to get N1000 each.
+        </p>
+
+        <p>
+            Your Weekend Giveaway I.D is {{ raffle_id }}.<br>
+            Log on to topplaysport.com by 8pm every Sunday to see list of winners.
+        </p>
+        <p>Thanks for choosing Topplaysport.</p>
+    </div>
+    {% include "mails/layouts/footer.html" %}
+{% endautoescape %}

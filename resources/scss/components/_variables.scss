@@ -1,0 +1,41 @@
+// Body
+$body-bg: #f8fafc;
+
+// Typography
+$font-family-sans-serif: "Nunito", sans-serif;
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
+
+// Colors
+$site-primary-color: #000321;
+$site-primary-color-shim: lighten($site-primary-color, 1.60);
+$site-primary-color-light: lighten($site-primary-color, 10);
+$site-primary-color-text-dark: $site-primary-color-shim;
+$site-primary-color-text-light: lighten($site-primary-color, 45);
+$site-primary-color-text-extra-light: lighten($site-primary-color, 70);
+
+$secondary-color: #ff4f2e;
+$secondary-color-shim: darken($secondary-color, 6%);
+$secondary-color-light: lighten($secondary-color, 15%);
+$secondary-color-text-dark: $secondary-color-shim;
+$secondary-color-text-light: lighten($secondary-color, 45%);
+$secondary-color-text-extra-light: lighten($secondary-color, 70%);
+
+$lost-color: #ffd03a;
+$lost-color-shim: darken($lost-color, 5%);
+$lost-color-light: lighten($lost-color, 15%);
+$lost-color-text-dark: $lost-color-shim;
+$lost-text-light: lighten($lost-color, 45%);
+$lost-color-text-extra-light: lighten($lost-color, 70%);
+
+$blue: #3490dc;
+$indigo: #6574cd;
+$purple: #9561e2;
+$pink: #f66D9b;
+$red: #e3342f;
+$orange: #f6993f;
+$yellow: #ffed4a;
+$green: #38c172;
+$teal: #4dc0b5;
+$cyan: #6cb2eb;
+$error: #FD493F;

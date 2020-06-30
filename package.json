@@ -1,0 +1,34 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "npm run development",
+        "development": "node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "watch": "npm run development -- --watch",
+        "watch-poll": "npm run watch -- --watch-poll",
+        "hot": "node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "prod": "npm run production",
+        "production": "node node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+    },
+    "devDependencies": {
+        "axios": "^0.18",
+        "bootstrap": "^4.3.1",
+        "cross-env": "^5.2",
+        "jquery": "^3.4",
+        "laravel-mix": "^4.0",
+        "lodash": "^4.17.15",
+        "popper.js": "^1.15",
+        "resolve-url-loader": "2.3.1",
+        "sass": "1.19.0",
+        "sass-loader": "7.*",
+        "vue": "^2.6.10",
+        "vue-template-compiler": "2.6.10"
+    },
+    "dependencies": {
+        "luxon": "^1.16.0",
+        "v-money": "^0.8.1",
+        "vue-datetime": "1.0.0-beta.10",
+        "vue2-filters": "^0.6.0",
+        "vuex": "^3.1.0",
+        "weekstart": "1.0.0"
+    }
+}

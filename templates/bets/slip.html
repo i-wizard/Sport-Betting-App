@@ -1,0 +1,199 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load site_utils %}
+{% block page_title %}Game slip: {{ slip.slip_token }} - {% site_name %}{% endblock %}
+{% block latter_style %}
+    <link rel="stylesheet" href="{% static 'css/core/resulting.css' %}">
+    <link rel="stylesheet" href="{% static 'css/core/betting.css' %}">
+{% endblock %}
+{% block content %}
+    <section class="section parallax-container breadcrumbs-wrap{% if user.is_authenticated %} push-header{% endif %}"
+             data-parallax-img="{% static 'images/bg/breadcrumbs-1-1920x726.jpg' %}">
+        <div class="parallax-content breadcrumbs-custom context-dark">
+            <div class="container">
+                <h3 class="breadcrumbs-custom-title">GAME ID - {{ slip.slip_token }}</h3>
+                <ul class="breadcrumbs-custom-path">
+                    <li><a href="javascript:void(0)" onclick="history.back()">Back</a></li>
+                    <li class="active">Game Slip</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-sm bg-gray-100">
+        <div class="container">
+            <div class="row row-50">
+                <div class="col-xl-12">
+                    <!-- Heading Component-->
+                    <article class="heading-component">
+                        <div class="heading-component-inner">
+                            <h5 class="heading-component-title">GAME ID - {{ slip.slip_token }}
+                            </h5>
+                            <div class="heading-component-aside">
+                                <ul class="list-inline list-inline-xs list-inline-middle">
+                                    <li>
+                                        <span>{{ slip.played_at|date:"d M Y, h:i A" }}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+
+                    <div class="score-singleton-cont">
+                        <div>Total Points</div>
+                        <span class="score">
+                            {% if slip.active_game.game_over %}
+                                <span>{{ slip.score }}</span>
+                            {% else %}
+                                <span>-:-</span>
+                            {% endif %}
+                        </span>
+                    </div>
+
+                    <div class="__sport-table match__resulting">
+                        {% for game in slip.games %}
+                            <div class="__table-tr">
+                                <div class="event-scheme clearfix mb-3">
+                                    <div class="col-6 col-md-6">
+                                        {{ game.match_details.home_team }} VS {{ game.match_details.away_team }}
+                                    </div>
+                                    <div class="col-6 col-md-6 event-time">
+                                        {{ game.match_details.match_start_time|date:"h:i A" }}
+                                    </div>
+                                </div>
+
+                                <div class="result-layout">
+                                    <div class="d-flex flex-column justify-content-between layout-item">
+                                        <div class="d-flex flex-row justify-content-between">
+                                            <div class="col-8">
+                                                <span class="layout-desc">FT Score {% if game.match_details.resulted %}
+                                                    {{ game.match_details.home_team_score }} :
+                                                    {{ game.match_details.away_team_score }}{% else %}
+                                                    <span>-:-</span>
+                                                {% endif %}</span>
+                                            </div>
+                                            <div class="col-4">
+                                                {% if game.match_details.resulted %}
+                                                    <span class="layout-desc">Point</span>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-row justify-content-between mt-1">
+                                            <div class="col-8">
+                                                <span class="layout-desc">Outcome {% if game.match_details.resulted %}-
+                                                    {% if game.match_details.home_team_score == game.match_details.away_team_score %}
+                                                        Draw
+                                                    {% elif game.match_details.home_team_score > game.match_details.away_team_score %}
+                                                        Home Win
+                                                    {% elif game.match_details.home_team_score < game.match_details.away_team_score %}
+                                                        Away Win
+                                                    {% endif %}
+                                                {% else %}
+                                                    <span>-:-</span>
+                                                {% endif %}
+                                                </span>
+                                            </div>
+                                            <div class="col-4">
+
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-row justify-content-between mt-1">
+                                            <div class="col-8">
+                                                <span class="layout-desc">{% if game.home_team_win and not game.away_team_win and not game.both_even %}
+                                                    <span class="layout-desc">Selection - Home Win</span>
+                                                {% elif game.away_team_win and not game.home_team_win and not game.both_even %}
+                                                    <span class="layout-desc">Selection - Away Win</span>
+                                                {% elif game.both_even and not game.home_team_win and not game.away_team_win %}
+                                                    <span class="layout-desc">Selection - Draw</span>
+                                                {% elif game.home_team_win and game.away_team_win and not game.both_even %}
+                                                    <span class="layout-desc">Selection - Home or Away Win</span>
+                                                {% elif game.home_team_win and game.both_even and not game.away_team_win %}
+                                                    <span class="layout-desc">Selection - Home Win or Draw</span>
+                                                {% elif game.away_team_win and game.both_even and not game.home_team_win %}
+                                                    <span class="layout-desc">Selection - Away Win or Draw</span>
+                                                {% endif %}
+                                                </span>
+                                            </div>
+                                            <div class="col-4">
+                                                {% if game.match_details.resulted %}
+                                                    {% if game.match_details.home_team_score == game.match_details.away_team_score %}
+                                                        {% if game.both_even %}
+                                                            <span class="layout-score">
+                                                            <span>3</span>
+                                                            </span>
+                                                        {% else %}
+                                                            <span class="layout-score lose">
+                                                            <span>0</span>
+                                                            </span>
+                                                        {% endif %}
+                                                    {% elif game.match_details.home_team_score > game.match.away_team_score %}
+                                                        {% if game.home_team_win %}
+                                                            <span class="layout-score">
+                                                            <span>3</span>
+                                                            </span>
+                                                        {% else %}
+                                                            <span class="layout-score lose">
+                                                            <span>0</span>
+                                                            </span>
+                                                        {% endif %}
+                                                    {% elif game.match_details.home_team_score < game.match_details.away_team_score %}
+                                                        {% if game.away_team_win %}
+                                                            <span class="layout-score">
+                                                            <span>3</span>
+                                                            </span>
+                                                        {% else %}
+                                                            <span class="layout-score lose">
+                                                            <span>0</span>
+                                                            </span>
+                                                        {% endif %}
+                                                    {% endif %}
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-row justify-content-between mt-1">
+                                            <div class="col-8">
+                                                <span class="layout-desc">{% if game.under_two_five %}
+                                                    <span class="layout-desc">Extra Point - Under 2.5</span>
+                                                {% else %}
+                                                    <span class="layout-desc">Extra Point - Over 2.5</span>
+                                                {% endif %}
+                                                </span>
+                                            </div>
+                                            <div class="col-4">
+                                                {% if game.match_details.resulted %}
+                                                    {% if game.under_two_five %}
+                                                        {% if game.match_details.both_team_score < 3 %}
+                                                            <span class="layout-score">
+                                                            <span>1</span>
+                                                        </span>
+                                                        {% else %}
+                                                            <span class="layout-score lose">
+                                                            <span>0</span>
+                                                        </span>
+                                                        {% endif %}
+
+                                                    {% elif game.over_two_five %}
+                                                        {% if game.match_details.both_team_score >= 3 %}
+                                                            <span class="layout-score">
+                                                            <span>1</span>
+                                                        </span>
+                                                        {% else %}
+                                                            <span class="layout-score lose">
+                                                            <span>0</span>
+                                                        </span>
+                                                        {% endif %}
+                                                    {% endif %}
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

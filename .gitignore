@@ -1,0 +1,16 @@
+node_modules/
+*.log
+public/js/app.js
+public/js/bundle.js
+public/css/style.css
+public/css/app.css
+public/css/core/*
+.env
+.env.prod
+.idea/
+assets/uploads/profile/*
+assets/uploads/sliders/*
+*.pyc
+.vscode/
+topplayenv
+sport_bettingenv

@@ -1,0 +1,24 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load site_utils %}
+{% block page_title %}Winners Chart - {% site_name %}{% endblock %}
+{% block latter_style %}
+    <link rel="stylesheet" href="{% static 'css/core/resulting.css' %}">
+{% endblock %}
+{% block content %}
+    <section class="section parallax-container breadcrumbs-wrap{% if user.is_authenticated %} push-header{% endif %}" data-parallax-img="{% static 'images/bg/breadcrumbs-1-1920x726.jpg' %}">
+        <div class="parallax-content breadcrumbs-custom context-dark">
+            <div class="container">
+                <h3 class="breadcrumbs-custom-title">{% site_name %} Winners</h3>
+                <ul class="breadcrumbs-custom-path">
+                    <li><a href="javascript:void(0)" onclick="history.back()">Back</a></li>
+                    <li class="active">Winners Chart</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-sm bg-gray-100">
+        <winners :user_id="'{{ user.id }}'"></winners>
+    </section>
+{% endblock content %}

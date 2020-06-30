@@ -1,0 +1,110 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load site_utils %}
+{% block page_title %}Soccer Trivia{% endblock %}
+{% block latter_style %}
+    <link rel="stylesheet" href="{% static 'css/core/resulting.css' %}">
+{% endblock %}
+{% block content %}
+    <section class="section parallax-container breadcrumbs-wrap{% if user.is_authenticated %} push-header{% endif %}"
+             data-parallax-img="{% static 'images/bg/breadcrumbs-1-1920x726.jpg' %}">
+        <div class="parallax-content breadcrumbs-custom context-dark">
+            <div class="container">
+                <h3 class="breadcrumbs-custom-title">Soccer Trivia</h3>
+                <ul class="breadcrumbs-custom-path">
+                    <li><a href="javascript:void(0)" onclick="history.back()">Back</a></li>
+                    <li class="active">Soccer Trivia</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-variant-1 bg-gray-100">
+        <div class="container">
+            <div class="">
+                <div class="alert alert-info">
+                    <p>
+                        Answer the questions correctly from any match and win <span
+                            style="color:#008000">NGN10,000</span> instantly<br>
+                        <strong>Stake: <span style="color:red">N20</span></strong>
+                    </p>
+                </div>
+            </div>
+            {% if messages %}
+                {% for message in messages %}
+                    <div {% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %}>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <i class="fa fa-times"></i>
+                        </button>
+                        <span>
+                                {{ message }}
+                            </span>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <div class="row row-50">
+                <div class="col-xl-12">
+                    <!-- Heading Component-->
+                    <article class="heading-component">
+                        <div class="heading-component-inner">
+                            <h5 class="heading-component-title">Matches
+                            </h5>
+                            <div class="heading-component-aside">
+                                <ul class="list-inline list-inline-xs list-inline-middle">
+                                    <li>
+                                        <a class="button button-xs button-red-outline active"
+                                           href="{% url 'trivia:index' %}">Matches</a>
+                                    </li>
+                                    <li>
+                                        <a class="button button-xs button-red-outline"
+                                           href="{% url 'trivia:entries' %}">My Entries {% if num_entries > 0 %}({{ num_entries }}){% endif %}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+
+
+                    <div class="mt-2 row">
+
+                        {% for question in questions %}
+                            <div class="col-12 col-md-6 col-lg-4 result-cont">
+                            <a class="game-result game-result-classic d-block text-dark" href="{% url 'trivia:question' question.id %}">
+                                <div class="my-0 mx-0 text-left f-300 px-1 py-1">{{ question.event }}</div>
+                                <div class="bg-gray-4 py-2">{{ question.closed_at }}</div>
+                                <div class="__game-result-main">
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex flex-column align-items-center">
+                                            <img src="{{ question.team_a_logo }}" class="mini-thumb text-center">
+                                            <span class="text-center">{{ question.team_a }}</span>
+                                        </div>
+                                        <div class="d-flex flex-column text-center">
+                                            <div>Prize</div>
+                                            <div><span class="btn btn-success py-1 flat" style="cursor: text">&#8358; 10,000</span></div>
+                                        </div>
+                                        <div class="d-flex flex-column align-items-center">
+                                            <img src="{{ question.team_b_logo }}" class="mini-thumb text-center">
+                                            <span class="text-center">{{ question.team_b }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2 text-center">
+                                        <span class="btn btn-yellow-alt py-1">Questions</span>
+                                    </div>
+                                </div>
+                            </a>
+                            </div>
+                            {% empty %}
+                            <div class="__sport_issue">
+                                <div>
+                                    <div class="__issue_helper">
+                                        There are no matches.
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

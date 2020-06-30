@@ -1,0 +1,33 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load site_utils %}
+{% block page_title %}404 - Page Not Found{% endblock %}
+{% block latter_style %}
+    <link rel="stylesheet" href="{% static 'css/core/resulting.css' %}">
+    <link rel="stylesheet" href="{% static 'css/core/betting.css' %}">
+{% endblock %}
+{% block content %}
+    <section class="section parallax-container breadcrumbs-wrap{% if user.is_authenticated %} push-header{% endif %}"
+             data-parallax-img="{% static 'images/bg/breadcrumbs-1-1920x726.jpg' %}">
+        <div class="parallax-content breadcrumbs-custom context-dark">
+            <div class="container">
+                <h3 class="breadcrumbs-custom-title">404</h3>
+                <ul class="breadcrumbs-custom-path">
+                    <li><a href="javascript:void(0)" onclick="history.back()">Back</a></li>
+                    <li class="active">Page Not Found</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-variant-1 bg-gray-100 text-center">
+        <div class="container">
+            <div class="row row-30 justify-content-center">
+                <div class="col-xl-10"><span class="icon-xl icon-gray-400 mdi mdi-emoticon-sad"></span>
+                    <h2><span class="text-primary">Oops!</span> Page Not found</h2>
+                    <p class="big text-gray-800">You may have mistyped the address or the page may have moved.</p><a class="button button-lg button-primary" href="{% url 'HomePage' %}">Go to home page</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

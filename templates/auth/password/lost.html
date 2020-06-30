@@ -1,0 +1,64 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load site_utils %}
+{% block page_title %}Lost Password{% endblock %}
+{% block content %}
+    <section class="section parallax-container breadcrumbs-wrap{% if user.is_authenticated %} push-header{% endif %}"
+             data-parallax-img="{% static 'images/bg/breadcrumbs-1-1920x726.jpg' %}">
+        <div class="parallax-content breadcrumbs-custom context-dark">
+            <div class="container">
+                <h3 class="breadcrumbs-custom-title">Lost Password</h3>
+                <ul class="breadcrumbs-custom-path">
+                    <li><a href="javascript:void(0)" onclick="history.back()">Back</a></li>
+                    <li class="active">Lost Password</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-variant-1 bg-gray-100 text-center">
+        <div class="container">
+            <div class="row row-50 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-5">
+                    <div class="card-login-register">
+                        <div class="card-top-panel">
+                            <div class="card-top-panel-left">
+                                <h5 class="card-title card-title-login">Lost Password</h5>
+                            </div>
+                        </div>
+                        <div class="card-form card-form-login">
+                            <form class="rd-form" method="post" action="{% url 'lostPassword' %}">
+                                {% csrf_token %}
+                                {% if messages %}
+                                    {% for message in messages %}
+                                        <div {% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %}>
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                            <span>
+                                {{ message }}
+                            </span>
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                                {% if form.non_field_errors %}
+                                    <div class="alert alert-warning">
+                                        {{ form.non_field_errors|striptags }}
+                                    </div>
+                                {% endif %}
+
+
+                                <div class="form-wrap">
+                                    <input class="form-input" placeholder="Enter Registered Email Address" type="email" name="email">
+                                </div>
+                                <button class="button button-primary button-block d-flex justify-content-between" type="submit">
+                                    <span>Request Password Reset</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

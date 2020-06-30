@@ -1,0 +1,102 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load site_utils %}
+{% block page_title %}Privacy Policy - {% site_name %}{% endblock %}
+{% block latter_style %}
+    <link rel="stylesheet" href="{% static 'css/core/faq.css' %}">
+{% endblock %}
+{% block content %}
+    <section class="section parallax-container breadcrumbs-wrap{% if user.is_authenticated %} push-header{% endif %}"
+             data-parallax-img="{% static 'images/bg/breadcrumbs-1-1920x726.jpg' %}">
+        <div class="parallax-content breadcrumbs-custom context-dark">
+            <div class="container">
+                <h3 class="breadcrumbs-custom-title">Privacy Policy</h3>
+                <ul class="breadcrumbs-custom-path">
+                    <li><a href="javascript:void(0)" onclick="history.back()">Back</a></li>
+                    <li class="active">Privacy Policy</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-sm bg-gray-100">
+        <div class="container">
+            <div class="row row-50">
+                <div class="col-xl-12">
+                    <!-- Heading Component-->
+                    <article class="heading-component">
+                        <div class="heading-component-inner">
+                            <h5 class="heading-component-title">Privacy Policy
+                            </h5>
+                            <div class="heading-component-aside">
+
+                            </div>
+                        </div>
+                    </article>
+
+                    <div class="__sport-table">
+                        <div class="row">
+                            <div class="col-12 text-center">
+                                <h4 class="text-uppercase mt-2">Privacy Policy</h4>
+                                <p class="mt-2">
+                                    This Privacy Policy is agreed between you and Topplaysport s corporate entities (Topplaysport , We, Us
+or Our as appropriate). Topplaysport will only process your personal data for the purposes for which it
+collected it, namely to provide you with an online betting service.
+                                </p>
+                                <p class="mt-2">
+                                    Topplaysport does not normally share your data with any other third parties; however, at times we may
+be required by law or legal process to disclose your personal information. We may also disclose
+information about you if we believe that disclosure is necessary for the public interest.
+                                </p>
+                                <p class="mt-2">
+                                By submitting your information to us and using the Website you confirm your consent to the use of your
+personal information as set out in this Privacy Policy. If you do not agree with the terms of this Privacy
+Policy please do not use the Website or otherwise provide us with your personal information.
+                                </p>
+                                <p class="mt-2">
+Your privacy is important to Topplaysport . We follow closely the laws and ensure legality. We
+endeavour to keep your personal information protected at all times by implementing adequate
+technical and organizational controls. Please take a moment to read the following policy to learn how
+we handle your personal information, as your use of our services will indicate your acceptance of its
+content.
+                                </p>
+                                <p class="mt-2">
+We collect and use your personal information to satisfy legal and regulatory requirements; for historical
+and statistical purposes; for security and control and for the smooth provision of our services. From time
+to time, we may also use your personal information to contact you by mail, email, telephone or mobile
+phone to introduce you to our products or any events, activities, projects, plans, developments,
+undertakings and special offers taking place, being promoted or supported by us. The data supplied by
+you upon registering online or thereafter shall be kept by Topplaysport and will solely by used to
+determine the legality of registration and activity on the Website. By supplying us with your information
+you confirm that you do not consider use of your information in accordance with this Privacy Policy to
+be a breach of your rights under The Act. We encourage you to contact us at any time and remind you of
+your right to opt out at any time from receiving any promotional or marketing materials from us..
+                                </p>
+                                <p class="mt-2">
+As a policy Topplaysport will not disclose any personal information to anyone other than those
+employees that need access to your data to provide you with a service. We may, however, be required
+by law or legal process to disclose your personal information to authorities.
+                                </p>
+                                <p class="mt-2">
+Topplaysport safeguards the security of the data you provide us with physical, electronic, and
+managerial procedures. Please note that we cannot guarantee that any data transmitted over the
+Internet is completely secure. Accordingly, we encourage you to take every precaution to protect your
+personal data when you are on the Internet.
+                                </p>
+                                <p class="mt-2">
+The Management of Topplaysport together with the Fraud Team will have the right to access the
+submitted personal information relating to the registered players. You always have a right of access the
+information we have about you. To review and update your personal contact information, simply contact Topplaysport and you will be provided with information about your personal data we hold. If
+you prefer you may contact our Customer Service using the contact details available on the site.
+Additionally, you have the right to have any inaccurate information corrected and where applicable,
+erased. It is our right to ask you to provide us with a written request for information we hold about you.
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

@@ -1,0 +1,54 @@
+{% extends "site_admin/layouts/base.html" %}
+{% block page_title %}Admin - Game Matches {% endblock %}
+{% load humanize %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div {% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %}>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <i class="material-icons">close</i>
+                            </button>
+                            <span>
+                                {{ message }}
+                            </span>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+
+                {% if form.errors %}
+                    {% if form.errors.name %}
+                        <div class="alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <i class="material-icons">close</i>
+                            </button>
+                            <span>{{ form.errors.name|striptags }}</span>
+                        </div>
+                    {% endif %}
+                    {% for error in form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <i class="material-icons">close</i>
+                            </button>
+                            <span>{{ error|escape }}</span>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+
+                <div class="clearfix"></div>
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title ">Games</h4>
+                    </div>
+                    <div class="card-body">
+                    <match-details :game_id="{{ game.id }}" :game_over="{{ game.game_over|yesno:"true,false" }}" :game_active="{{ game.is_active|yesno:"true,false" }}"></match-details>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

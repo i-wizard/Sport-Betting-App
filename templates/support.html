@@ -1,0 +1,139 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load site_utils %}
+{% block page_title %}Supports - {% site_name %}{% endblock %}
+{% block latter_style %}
+    {#    <link rel="stylesheet" href="{% static 'css/core/faq.css' %}">#}
+{% endblock %}
+{% block content %}
+    <section class="section parallax-container breadcrumbs-wrap{% if user.is_authenticated %} push-header{% endif %}"
+             data-parallax-img="{% static 'images/bg/breadcrumbs-1-1920x726.jpg' %}">
+        <div class="parallax-content breadcrumbs-custom context-dark">
+            <div class="container">
+                <h3 class="breadcrumbs-custom-title">Get in touch</h3>
+                <ul class="breadcrumbs-custom-path">
+                    <li><a href="javascript:void(0)" onclick="history.back()">Back</a></li>
+                    <li class="active">Support</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-variant-1 bg-gray-100">
+        <div class="container">
+            <div class="row row-50">
+                <div class="col-lg-7 col-xl-8">
+                    <!-- Heading Component-->
+                    <article class="heading-component">
+                        <div class="heading-component-inner">
+                            <h5 class="heading-component-title">Get in touch
+                            </h5>
+                        </div>
+                    </article>
+
+                    {% if messages %}
+                    {% for message in messages %}
+                        <div {% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %}>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <i class="fa fa-close"></i>
+                            </button>
+                            <span>
+                                {{ message }}
+                            </span>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+
+                {% if form.errors %}
+                    <div class="alert alert-danger">
+                        <ul>
+                            {% for field in form %}
+                                {% if field.errors %}
+                                    {% for error in field.errors %}
+                                        <li>{{ error|escape }}</li>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    {% for error in form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <i class="material-icons">close</i>
+                            </button>
+                            <span>{{ error|escape }}</span>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                    <form class="rd-form rd-mailform" method="post" action="{% url 'Support' %}">
+                         {% csrf_token %}
+                        <div class="row row-10 row-narrow">
+                            <div class="col-md-6">
+                                <div class="form-wrap">
+                                    <label class="form-label" for="username">Your Name</label>
+                                    <input class="form-input" id="username" type="text" name="username" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-wrap">
+                                    <label class="form-label" for="phone">Phone</label>
+                                    <input class="form-input" id="phone" type="tel" name="phone" required>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-wrap">
+                                    <label class="form-label" for="message">Message</label>
+                                    <textarea class="form-input" id="message" name="message" required></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-wrap">
+                                    <label class="form-label" for="email">E-mail</label>
+                                    <input class="form-input" id="email" type="email" name="email" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <button class="button button-lg button-primary button-block" type="submit">Send
+                                    message
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-5 col-xl-4">
+                    <!-- Heading Component-->
+                    <article class="heading-component">
+                        <div class="heading-component-inner">
+                            <h5 class="heading-component-title">Contact Details
+                            </h5>
+                        </div>
+                    </article>
+
+                    <div class="contact-list">
+                        <dl>
+                            <dt>E-mail</dt>
+                            <dd><span class="icon icon-primary mdi mdi-email-outline"></span><a class="link"
+                                                                                                href="mailto:support@topplaysport.com"><span
+                                    class="__cf_email__">support@topplaysport.com</span></a></dd>
+                        </dl>
+                        <dl>
+                            <dt>Social Media</dt>
+                            <dd><ul class="list-inline list-inline-sm">
+                                        <li><a class="icon-xs fa fa-facebook"
+                                               href="https://web.facebook.com/pg/Topplaysport-104500274229137/posts/?ref=page_internal"></a>
+                                        </li>
+                                        <li><a class="icon-xs fa fa-twitter"
+                                               href="https://mobile.twitter.com/Topplaysport_"></a></li>
+                                        <li><a class="icon-xs fa fa-instagram"
+                                               href="https://www.instagram.com/topplaysport_/"></a></li>
+                                    </ul></dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

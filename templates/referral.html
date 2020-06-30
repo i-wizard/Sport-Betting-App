@@ -1,0 +1,151 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load site_utils %}
+{% block page_title %}Referrals - {% site_name %}{% endblock %}
+{% block latter_style %}
+{% endblock %}
+{% block content %}
+    <section class="section parallax-container breadcrumbs-wrap{% if user.is_authenticated %} push-header{% endif %}"
+             data-parallax-img="{% static 'images/bg/breadcrumbs-1-1920x726.jpg' %}">
+        <div class="parallax-content breadcrumbs-custom context-dark">
+            <div class="container">
+                <h3 class="breadcrumbs-custom-title">Referrals</h3>
+                <ul class="breadcrumbs-custom-path">
+                    <li><a href="javascript:void(0)" onclick="history.back()">Back</a></li>
+                    <li class="active">Referrals</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-sm bg-gray-100">
+        <div class="container">
+            <div class="row row-50">
+                <div class="col-xl-12">
+                    <!-- Heading Component-->
+                    <article class="heading-component">
+                        <div class="heading-component-inner">
+                            <h5 class="heading-component-title">Referrals
+                            </h5>
+                            <div class="heading-component-aside">
+
+                            </div>
+                        </div>
+                    </article>
+
+                    <div class="__sport-table">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <span class="mod-heading">Share referral code on:</span>
+                                <div class="mt-2 row">
+                                    <div class="col-md-4">
+                                        <div class="pt-2 social-icons">
+                                            <a href="https://www.facebook.com/sharer/sharer.php?u=http://topplaysport.com/ref/{{ user.referral_code }}" target="_blank" class="facebook"><span class="fa fa-facebook"></span></a>
+                                            <a href="https://twitter.com/share?url=http://topplaysport.com/ref/{{ user.referral_code }}" class="twitter"><span class="fa fa-twitter"></span></a>
+                                            <a href="#" class="whatsapp" id="whatsapp" data-text="Register and play with referral code {{ user.referral_code }}" data-link="http://topplaysport.com/ref/{{ user.referral_code }}"><span class="fa fa-whatsapp"></span></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group mt-4 mt-md-0">
+                                            {#                                            <span class="cursor text-right copy-data"#}
+                                            {#                                                  data-clipboard-text="{{ user.referral_code }}">Copy</span>#}
+                                            <input type="text" id="ref_code" class="form-control"
+                                                   value="{{ user.referral_code }}" readonly/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="alert alert-info">
+                                    Are you short on cash? No problem.<br>Just Refer a friend using your referral code and get a one time bonus of NGN100 as soon as your friend makes the first deposit and plays at least one game.<br>Refer a friend and have enough money to play and win!
+                                </div>
+                                <div class="alert alert-info">Your commission will go to your bonus account which you can use to play games.</div>
+                                <div class="table-custom-responsive">
+                                    <table class="table-custom table-roster team2-blue">
+                                        <thead>
+                                        <tr>
+                                            <th colspan="5">Referred Users</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>S/N</td>
+                                            <td>Profile Image</td>
+                                            <td>Username</td>
+                                            <td>Commission</td>
+                                            <td>Commission Received</td>
+                                            <td>Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                        </tr>
+                                        {% for referral in referrals %}
+                                            <tr class="{% if referral.is_settled %}table-success{% endif %}">
+                                                <td>{{ forloop.counter }}</td>
+                                                <td class="text-center"><img src="{% get_media_prefix %}{{ referral.user.profile_image }}"
+                                                                             class="img-circle" style="height:35px">
+                                                </td>
+                                                <td>{{ referral.user.username }}</td>
+                                                <td>NGN 100</td>
+                                                <td>{% if referral.is_settled %} Yes{% else %}No{% endif %}</td>
+                                                <td>{{ referral.created_at }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+
+{% block latter_js %}
+    <script src="{% static 'admin/js/plugins/clipboard.min.js' %}"></script>
+    <script>
+    var isMobile = {
+    Android: function() {
+        return navigator.userAgent.match(/Android/i);
+    },
+    BlackBerry: function() {
+        return navigator.userAgent.match(/BlackBerry/i);
+    },
+    iOS: function() {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    Opera: function() {
+        return navigator.userAgent.match(/Opera Mini/i);
+    },
+    Windows: function() {
+        return navigator.userAgent.match(/IEMobile/i);
+    },
+    any: function() {
+        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+    }
+};
+     $(document).on("click", '#whatsapp', function() {
+        if( isMobile.any() ) {
+            var text = $(this).attr("data-text");
+            var url = $(this).attr("data-link");
+            var message = encodeURIComponent(text) + " - " + encodeURIComponent(url);
+            window.location.href = "whatsapp://send?text=" + message;;
+        } else {
+            alert("Whatsapp is not installed on this device");
+        }
+    });
+        var clipboard = new ClipboardJS('.copy-data');
+
+        clipboard.on('success', function (e) {
+            // console.info('Action:', e.action);
+            // console.info('Text:', e.text);
+            // console.info('Trigger:', e.trigger);
+
+            e.clearSelection();
+        });
+
+        clipboard.on('error', function (e) {
+            console.error('Action:', e.action);
+            console.error('Trigger:', e.trigger);
+        });
+    </script>
+{% endblock %}

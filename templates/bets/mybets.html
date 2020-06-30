@@ -1,0 +1,49 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load site_utils %}
+{% block page_title %}My Games - {% site_name %}{% endblock %}
+{% block latter_style %}
+    <link rel="stylesheet" href="{% static 'css/core/resulting.css' %}">
+{% endblock %}
+{% block content %}
+    <section class="section parallax-container breadcrumbs-wrap{% if user.is_authenticated %} push-header{% endif %}"
+             data-parallax-img="{% static 'images/bg/breadcrumbs-1-1920x726.jpg' %}">
+        <div class="parallax-content breadcrumbs-custom context-dark">
+            <div class="container">
+                <h3 class="breadcrumbs-custom-title">My Games</h3>
+                <ul class="breadcrumbs-custom-path">
+                    <li><a href="javascript:void(0)" onclick="history.back()">Back</a></li>
+                    <li class="active">My games</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-sm bg-gray-100">
+        <div class="container">
+            <div class="row row-50">
+                <div class="col-xl-12">
+
+                    {% if num_bets < 5 %}
+                        <div class="alert alert-warning">
+                            Play {{ remaining_bets }} more slips to get  a guaranteed NGN200 bonus instantly and a chance to win NGN1,000 cash in the free weekend giveaway
+                        </div>
+                    {% else %}
+                        {% if raffle_id %}
+                            <div class="alert alert-success">
+                                You have have qualified for the free weekend giveaway. Your raffle id is
+                                <strong>{{ raffle_id }}</strong> you have also been credited with NGN200 bonus
+                            </div>
+                        {% else %}
+                            <div class="alert alert-success">
+                                You have have qualified for the weekend raffle draw. Your raffle id will be made known
+                                to you soon.
+                            </div>
+                        {% endif %}
+                    {% endif %}
+
+                </div>
+            </div>
+            <bets/>
+    </section>
+{% endblock content %}

@@ -1,0 +1,264 @@
+@import '../components/variables';
+.container-cursor {
+  cursor: pointer;
+}
+
+.__game-result-main {
+  padding: 25px 20px;
+
+  .result-base-info {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+
+    .bet {
+      font-size: 14px;
+      color: #151515;
+      line-height: 17px;
+      font-weight: 500;
+      //font-family: Kanit, Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+
+      .token {
+        font-size: 15px;
+        padding: 1px;
+        letter-spacing: -1px;
+      }
+
+      .outcome-wrapper {
+        position: relative;
+      }
+    }
+
+    .time {
+      font-size: 12px;
+    }
+  }
+
+  .result-content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15px;
+
+    .content-cell {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+
+      .cell-heading {
+        color: darken(#9b9b9b, 55);
+        margin-top: 12px;
+        margin-bottom: 7px;
+      }
+
+      .score {
+        font-size: 12px;
+      }
+
+      .money {
+        font-size: 15px;
+        color: darken(#9b9b9b, 30);
+        margin-right: 4px;
+      }
+    }
+  }
+}
+
+.__sport_preloader {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  text-align: center;
+
+  .preloader-body {
+    height: 30px;
+    width: 30px;
+  }
+}
+
+.result-cont {
+  margin-top: 28px
+}
+
+.__sport_issue {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 14px;
+
+  .__issue_helper {
+    font-size: 14px;
+    color: #688276;
+    margin-bottom: 5px;
+    display: block;
+  }
+
+  .__issue_btn {
+    display: inline-block !important;
+    background-color: transparent;
+    border: solid 1px #59C1F1;
+    padding: 7px 14px;
+    text-align: center;
+
+    &:hover {
+      background: #59C1F1;
+      color: #ffffff;
+      border: solid 1px #3DB3F7;
+    }
+  }
+}
+
+.score-singleton-cont {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+
+  div {
+    padding: 12px;
+    font-size: 18px;
+    color: #151515;
+    font-weight: 500;
+    font-family: "Kanit", roboto, -apple-system, BlinkMacSystemFont, segoe ui, Roboto, helvetica neue, Arial, sans-serif;
+  }
+
+  .score {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background: #59C1F1;
+    color: #fff;
+    border: solid 1px #3DB3F7;
+    display: flex;
+    white-space: nowrap;
+    vertical-align: baseline;
+    justify-content: center;
+    flex-direction: column;
+
+    span {
+      color: #fff;
+      text-align: center;
+      font-size: 18px !important;
+    }
+  }
+}
+
+.match__resulting {
+  .result-layout {
+    //display: flex;
+    //flex-direction: row;
+    //justify-content: space-between;
+    padding: 4px 0 10px;
+
+    .layout-item {
+      .layout-desc {
+        font-family: -apple-system, BlinkMacSystemFont, segoe ui, Roboto, helvetica neue, Arial, sans-serif;
+        font-size: 12px;
+        line-height: 13px;
+        font-weight: 500;
+        letter-spacing: .05em;
+        color: #353a45
+      }
+
+      .layout-desc + .layout-desc {
+        margin-top: 9px
+      }
+
+      .layout-score {
+        margin-left: 12px;
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        background: #64DD57;
+        color: #fff;
+        border: solid 1px #64DD57;
+        display: flex;
+        white-space: nowrap;
+        vertical-align: baseline;
+        justify-content: center;
+        flex-direction: column;
+
+        &.lose {
+          background: #DD3122;
+          border: solid 1px #DD3122;
+        }
+
+        span {
+          color: #fff;
+          text-align: center;
+          //font-size: 15px !important;
+          font-weight: 500;
+          letter-spacing: .1em;
+          font-family: kanit, -apple-system, BlinkMacSystemFont, segoe ui, Roboto, helvetica neue, Arial, sans-serif;
+          font-size: 11px;
+        }
+      }
+    }
+  }
+}
+
+.no-floating-button {
+  cursor: pointer;
+  -webkit-transition: all .1s ease-out;
+  transition: all .1s ease-out;
+  -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  background: transparent;
+  border: none;
+
+  .content-group {
+    position: relative;
+    display: inline-flex;
+    vertical-align: middle;
+  }
+
+  .content-group > .content-self {
+    flex: 0 1 auto;
+  }
+
+  .content-group > .content-self:first-child {
+    margin-left: 0;
+  }
+
+  .content-group > .content-self:not(:last-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: 1px solid inherit;
+  }
+
+  .content-group > .content-self:not(:first-child) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .content-self {
+    display: inline-block;
+    padding: 8px 13px;
+    font-family: kanit, -apple-system, BlinkMacSystemFont, segoe ui, Roboto, helvetica neue, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 14px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #151515;
+    background: darken($lost-color, 7%);
+    border: solid 1px darken($lost-color, 16%);
+    border-radius: 4px;
+  }
+
+}
+
+//.no-floating-button:active,
+//.no-floating-button:focus,
+//.no-floating-button:hover {
+//  box-shadow: 0 0 4px rgba(0, 0, 0, .14),
+//  0 4px 8px rgba(0, 0, 0, .28);
+//}
+
+@import '../components/responsive';

@@ -1,0 +1,129 @@
+@media print {
+  @page {
+    size: A4;
+  }
+  .bt-col-right {
+    display: none;
+  }
+  .bt-col-mid {
+    max-width: 100%;
+  }
+}
+
+@media(min-width: 992px) {
+  .bt-table {
+    .bt-col-mid, .bt-col-right {
+      vertical-align: top;
+    }
+
+    .inner-cell {
+      margin: 0 25px;
+    }
+
+    .bt-col-right {
+      display: block;
+    }
+  }
+}
+
+@media(min-width: 992px) {
+  .__games-table .wins {
+    border-right: 1px solid #e1e1e1
+  }
+
+  .__sport-table {
+    .__table-tr {
+      .sport-event {
+        .event-title {
+          .sport-table-icon {
+            padding-left: 13px;
+            padding-right: 13px;
+          }
+        }
+      }
+    }
+  }
+
+  .point-five-toggle, .floating-button, .md-query-mobile {
+    display: none
+  }
+
+}
+
+@media(max-width: 991px) {
+  .md-query-pc {
+    display: none;
+  }
+
+  .bt-table {
+    .bt-col-right {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1050;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.78);
+
+      .cancel-modal {
+        position: absolute;
+        top: 0;
+        left: 7px;
+        font-size: 18px;
+        font-weight: 800;
+        color: #fff;
+        text-shadow: 1px 0px -1px #B1B7AF;
+        cursor: pointer;
+        padding: 5px;
+        z-index: 100; //
+      }
+
+      .selection-slip {
+        width: 400px;
+        max-width: 89%;
+        margin: 1.75rem auto;
+      }
+    }
+  }
+}
+
+@media(max-width: 560px) {
+  .bt-table {
+    .bt-col-right {
+
+      .selection-slip {
+        position: absolute;
+        width: 100% !important;
+        max-width: 100%;
+        margin: 0 0 !important;
+        bottom: 0;
+        z-index: 9999 !important;
+      }
+    }
+  }
+
+  .__sport-table {
+    .module-bet-wager {
+      .wager-button {
+        padding: 5px 10px;
+      }
+    }
+  }
+}
+
+@media(min-width: 1199px) {
+  .match__resulting {
+    .result-layout {
+      .layout-item {
+        .layout-score {
+          height: 22px;
+          width: 22px;
+
+          span {
+            font-size: 11px;
+          }
+        }
+      }
+    }
+  }
+}

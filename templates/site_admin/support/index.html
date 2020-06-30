@@ -1,0 +1,131 @@
+{% extends "site_admin/layouts/base.html" %}
+{% block page_title %}Admin - Support{% endblock %}
+{% load humanize %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div {% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %}>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <i class="material-icons">close</i>
+                            </button>
+                            <span>
+                                {{ message }}
+                            </span>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+
+                {% if form.errors %}
+                    <div class="alert alert-danger">
+                        <ul>
+                            {% for field in form %}
+                                {% if field.errors %}
+                                    {% for error in field.errors %}
+                                        <li>{{ error|escape }}</li>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    {% for error in form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <i class="material-icons">close</i>
+                            </button>
+                            <span>{{ error|escape }}</span>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <div class="clearfix"></div>
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title ">Issues</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                <th>
+                                    Username
+                                </th>
+                                <th>
+                                    Email Address
+                                </th>
+                                <th>
+                                    Message
+                                </th>
+                                <th>
+                                    Date/Time
+                                </th>
+                                <th>
+                                    Action&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </th>
+                                </thead>
+                                <tbody>
+                                {% for issue in issues %}
+                                    <tr>
+                                        <td>{{ issue.username }}</td>
+                                        <td>{{ issue.email }}</td>
+                                        <td>{{ issue.message }}</td>
+                                        <td>{{ issue.timestamp }}</td>
+                                        <td>
+                                            <a href=""
+                                               class="btn btn-primary btn-sm" data-toggle="modal" data-target="#user-respond-{{ issue.id }}">Respond</a>
+
+                                            <div class="modal fade" id="user-respond-{{ issue.id }}" tabindex="-1" role="dialog"
+                                                 aria-labelledby="exampleModalCenterTitle"
+                                                 aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title" id="exampleModalLongTitle">Respond to {{ issue.username }}</h4>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form action="{% url 'myadmin:support_response' %}" method="POST">
+                                                            {% csrf_token %}
+                                                            <div class="modal-body">
+                                                                <div class="form-group">
+                                                                    <span class="badge badge-info">Message</span>
+                                                                    <p>{{ issue.message }}</p>
+                                                                </div>
+                                                                <input type="hidden" name="name" value="{{ issue.username }}">
+                                                                <input type="hidden" name="email" value="{{ issue.email }}">
+                                                                <div class="form-group">
+                                                                    <label class="bmd-label-floating">Enter Message</label>
+                                                                    <textarea name="message"
+                                                                              class="form-control"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-primary">Send Respond
+                                                                </button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% empty %}
+                                    <tr>
+                                        <td colspan="100%" class="text-center">No Issue available</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

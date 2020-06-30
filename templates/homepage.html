@@ -1,0 +1,115 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load site_utils %}
+{% block page_title %}{% site_name %} | Online prediction site{% endblock %}
+{% block latter_style %}
+    <link rel="stylesheet" href="{% static 'css/core/betting.css' %}">
+    <link rel="stylesheet" href="{% static 'css/lightbox.min.css' %}">
+{% endblock %}
+{% block content %}
+    <!-- Swiper-->
+    <section
+            class="section swiper-container swiper-slider swiper-classic{% if not user.is_authenticated %} logged-out{% endif %}"
+            data-loop="true"
+            data-autoplay="4000"  data-simulate-touch="true" data-slide-effect="slide">
+        <div class="swiper-wrapper">
+            {% for slider in sliders %}
+                <div class="swiper-slide" data-slide-bg="{% get_media_prefix %}{{ slider.image }}">
+
+                </div>
+            {% endfor %}
+        </div>
+        <div class="swiper-button swiper-button-prev"></div>
+        <div class="swiper-button swiper-button-next"></div>
+        <div class="swiper-pagination"></div>
+    </section>
+    <section class="section section-sm bg-gray-100 md-query-pc-h">
+        <div class="container">
+            <div class="row margin-bottom-not-30">
+                {% if user.is_authenticated %}
+                    <div class="col-6 col-sm-6 col-md-3">
+                        <a class="feature-item text-center" href="{% url 'mybets' %}">
+                            <div class="feature-icon">
+                                <span class="position-relative hing-container">
+                                    {% if num_bets > 0 %}
+                                    <span class="hanging-bets"><span>{{ num_bets }}</span></span>
+                                        {% endif %}
+                                    <i class="fa fa-bookmark"></i>
+                                </span>
+                            </div>
+                            <h3 class="title">My Games</h3>
+                        </a>
+                    </div><!-- feature-item end -->
+                {% else %}
+                    <div class="col-6 col-sm-6 col-md-3">
+                        <a class="feature-item text-center" href="{% url 'HowToPlay' %}">
+                            <div class="feature-icon"><i class="fa fa-question"></i></div>
+                            <h3 class="title">How To Play</h3>
+                        </a>
+                    </div><!-- feature-item end -->
+                {% endif %}
+                <div class="col-6 col-sm-6 col-md-3">
+                    <a class="feature-item text-center" href="{% url 'winners_chart' %}">
+                        <div class="feature-icon"><i class="fa fa-bar-chart"></i></div>
+                        <h3 class="title">Winners Chart</h3>
+                    </a>
+                </div><!-- feature-item end -->
+                <div class="col-6 col-sm-6 col-md-3">
+                    <a class="feature-item text-center position-relative" href="{% url 'trivia:index' %}">
+                        <div class="feature-icon position-relative">
+                            <new-trivia></new-trivia>
+                            <i class="fa fa-trophy"></i></div>
+                        <h3 class="title">Soccer Trivia</h3>
+                    </a>
+                </div><!-- feature-item end -->
+            </div>
+        </div>
+    </section>
+    <section class="section section-sm bg-gray-100 md-query-mobile-h">
+        <div class="containe pt-3">
+            <div class="m-features d-flex flex-row justify-content-between">
+                {% if user.is_authenticated %}
+                    <a class="feature-item text-center text-capitalize" href="{% url 'mybets' %}">
+                    <span class="feature-icon position-relative hing-container">
+                        {% if num_bets > 0 %}
+                            <span class="hanging-bets"><span>{{ num_bets }}</span></span>
+                        {% endif %}
+                        <i class="fa fa-bookmark"></i>
+                                </span>
+                        {#                    <span class="feature-icon">#}
+                        {#                        <i class="fa fa-bookmark"></i>#}
+                        {#                    </span>#}
+                        <h3>my games</h3>
+                    </a>
+                {% else %}
+                    <a class="feature-item text-center text-capitalize" href="{% url 'HowToPlay' %}">
+                    <span class="feature-icon">
+                        <i class="fa fa-question"></i>
+                    </span>
+                        <h3>how to play</h3>
+                    </a>
+                {% endif %}
+                <a class="feature-item text-center text-capitalize" href="{% url 'winners_chart' %}">
+                    <span class="feature-icon">
+                        <i class="fa fa-bar-chart"></i>
+                    </span>
+                    <h3>Winners Chart</h3>
+                </a>
+                <a class="feature-item text-center text-capitalize" href="{% url 'trivia:index' %}">
+                    <span class="feature-icon position-relative">
+                        <new-trivia></new-trivia>
+                        <i class="fa fa-trophy"></i>
+                    </span>
+                    <h3>Soccer Trivia</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+    <section class="section section-sm bg-gray-100">
+        <game-listing :logged_in="{{ user.is_authenticated|yesno:"true,false" }}"></game-listing>
+    </section>
+    <watch-raffle-btn></watch-raffle-btn>
+{% endblock content %}
+{% block latter_js %}
+    <script src="{% static 'js/lightbox.min.js' %}" type="text/javascript"></script>
+{% endblock %}

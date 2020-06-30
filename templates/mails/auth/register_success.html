@@ -1,0 +1,33 @@
+{% autoescape off %}
+    <img src="http://topplaysport.com/static/images/misc/mail-logo.png" alt="logo" width="200px" height="40px"
+         style="margin-left:auto;margin-right:auto;display:block;">
+    <div style="background-color:white;border:0.1px solid #000321;border-radius:10px 10px 0px 0px;padding:10px 14px;font-size: 15px;">
+    <p>Hi I’m David, thank you {{ user.username }} for creating an account with us. I specially welcome you to a platform
+        that rewards <a href="http://topplaysports.com">topplayers</a>.</p>
+    <p>I want to make sure you get the most out of <a href="http://topplaysports.com"><b>Topplaysport.com</b></a></p>
+        <p><a href="http://topplaysports.com">Topplaysport</a> is a competitive soccer prediction site where participants compete against themselves to be among the top 20 players who will get a guaranteed <strong>NGN 2,000</strong> each everyday.</p>
+    <h3 style="margin-left: 10px; color: #0b0b0b; font-size: 19px;margin-bottom: 5px;padding-bottom: 0px !important">1. HOW TO PLAY THE GAME</h3>
+    <ul>
+        <li>Make a selection of either Home win <b>1</b>, Draw <b>X</b> or Away win <b>2</b> for all 10 of our daily games (Each correct prediction here is valued at 3 points)</li>
+        <li>Get an extra point by selecting if each game will finish with either under <b>2.5</b> “2 goals or less” goals or over <b>2.5</b> goals “3 goals or more” (a correct prediction here is valued at 1 point)</li>
+        <li>After making these selections click play and an entry fee of NGN100 is
+deducted from your <a href="http://topplaysports.com">Topplaysport</a> account.</li>
+    </ul>
+    <p>For more info on how to play and creating a Double chance visit the <a href="http://topplaysports.com/how-to-play">how to play</a> section on the website.</p>
+    <h3 style="margin-left: 10px; color: #0b0b0b; font-size: 19px;margin-bottom: 5px;padding-bottom: 7px">2. WINNING</h3>
+    <p>The Top 20 players with the highest point for the day get a cash reward of
+<b>NGN2,000</b> each everyday.</p>
+    <h3 style="margin-left: 10px; color: #0b0b0b; font-size: 19px;margin-bottom: 5px;padding-bottom: 7px">3. BONUSES</h3>
+    <p>if you are short on cash? No worries we have you covered, refer a
+friend to play on Topplaysport.com and get a NGN100 bonus as soon
+your friend makes the first deposit.</p>
+        <h3 style="margin-left: 10px; color: #0b0b0b; font-size: 19px;margin-bottom: 5px;padding-bottom: 7px">4. SOCCER QUIZ</h3>
+        <p>This is an instant way of making cool cash on the platform, all you need to do is
+to answer 3 questions correctly about one soccer game and you win
+NGN10,000 instantly with as little as NGN20.</p>
+    <p>For more information or if you need any help please reach out to us at <a href="mailto:help@topplaysport.com">help@topplaysport.com</a>.</p>
+
+    <p style="color: #3c4858"><small>Cheers!</small></p>
+</div>
+    {% include "mails/layouts/footer.html" %}
+{% endautoescape %}

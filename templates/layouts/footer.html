@@ -1,0 +1,92 @@
+{% load staticfiles %}
+{% load site_utils %}
+<div class="s-footer">
+    <div class="m-footer-top pb-1">
+        <ul class="m-content ml-auto mr-auto">
+            <li class="m-col-wrapper col-12 col-md-3">
+                <h6 class="m-col-title">Quick Links</h6>
+                <ul class="m-col-content">
+                    <li class="m-icon-more"><a href="{% url 'Terms' %}">Terms &amp; Conditions</a></li>
+                    <li class="m-icon-more"><a href="{% url 'Privacy' %}">Privacy Policy</a></li>
+                    <li class="m-icon-more"><a href="{% url 'winners_chart' %}">Winners Chart</a></li>
+                    <li class="m-icon-more"><a href="{% url 'jackpot_winners' %}">Weekend Giveaway Winners</a></li>
+                    <li class="m-icon-more"><a href="{% url 'Support' %}">Support</a></li>
+                </ul>
+            </li>
+            <li class="m-col-wrapper col-12 col-md-2">
+                <h6 class="m-col-title">How To Play</h6>
+                <ul class="m-col-content">
+                    <li class="m-icon-more"><a href="{% url 'Faqs' %}">FAQ</a></li>
+                    <li class="m-icon-more"><a href="{% url 'HowToPlay' %}">How to Play</a></li>
+                </ul>
+            </li>
+            <li class="m-col-wrapper col-12 col-md-3">
+                <h6 class="m-col-title">Contact Us</h6>
+                <address class="m-col-content m-contact">
+                    <div>Email: support@topplaysport.com</div>
+                </address>
+            </li>
+            <li class="m-col-wrapper m-l-right col-12 col-md-3">
+                <address>
+                    <a href="https://web.facebook.com/pg/Topplaysport-104500274229137/posts/?ref=page_internal"
+                       target="_blank"><i class="m-icon m-icon-fb"></i></a>
+                </address>
+                <address>
+                    <a href="https://mobile.twitter.com/Topplaysport_" target="_blank"><i
+                            class="m-icon m-icon-twitter"></i></a>
+                </address>
+                <address>
+                    <a href="https://www.instagram.com/topplaysport_/" target="_blank"><i
+                            class="m-icon m-icon-ins"></i></a>
+                </address>
+            </li>
+        </ul>
+    </div>
+    <div class="m-footer-mid">
+        <ul class="m-content ml-auto mr-auto">
+            <li class="m-col-wrapper">
+                <div class="m-left m-forum">
+                    <div class="m-image-wrapper">
+                        <img src="{% static 'images/misc/forum@2x.c05a82e567.svg' %}"
+                             alt="18+">
+                    </div>
+                </div>
+                <p class="m-right">Must be 18 years of age or older to register or play at {% site_name %}.</p>
+            </li>
+            <li class="m-col-wrapper">
+                <div class="m-left m-licence">
+                    <div class="m-image-wrapper">
+                        <img src="{% static 'images/misc/license@2x.c598257514.svg' %}"
+                             alt="Licence">
+                    </div>
+                </div>
+                <p class="m-right">{% site_name %} is a tradename for correttezza technologies Ltd.</p>
+            </li>
+        </ul>
+    </div>
+    <div class="m-footer-bottom">
+        <div class="m-content ml-auto mr-auto">
+            <ul class="m-left">
+                <li class="l-item i-verve">
+                    <div class="m-image-wrapper">
+                        <img src="{% static 'images/misc/verve.24d4c9d160.png' %}"
+                             alt="">
+                    </div>
+                </li>
+                <li class="l-item i-masterCard">
+                    <div class="m-image-wrapper">
+                        <img src="{% static 'images/misc/masterCard.8f909c7dc4.png' %}"
+                             alt="">
+                    </div>
+                </li>
+                <li class="l-item i-visa">
+                    <div class="m-image-wrapper">
+                        <img src="{% static 'images/misc/visa.a3db440056.png' %}"
+                             alt="">
+                    </div>
+                </li>
+            </ul>
+            <span class="m-copy">&copy; {% now 'Y' %} {% site_name %}. All rights reserved.</span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,205 @@
+{% extends "site_admin/layouts/base.html" %}
+{% block page_title %}Admin - Users {% endblock %}
+{% load humanize %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div {% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %}>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <i class="material-icons">close</i>
+                            </button>
+                            <span>
+                                {{ message }}
+                            </span>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+
+                {% if form.errors %}
+                    <div class="alert alert-danger">
+                        <ul>
+                            {% for field in form %}
+                                {% if field.errors %}
+                                    {% for error in field.errors %}
+                                        <li>{{ error|escape }}</li>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    {% for error in form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <i class="material-icons">close</i>
+                            </button>
+                            <span>{{ error|escape }}</span>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+
+                <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#user-add">Add
+                    Special User
+                </button>
+            <div class="clearfix"></div>
+                <div>
+                    <form method="GET" action="{% url 'myadmin:users' %}">
+                        <input type="search" class="form-control" name="q" placeholder="Search User">
+                    </form>
+                </div>
+
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Users</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                <th></th>
+                                <th>
+                                    S/N
+                                </th>
+                                <th>
+                                    Username
+                                </th>
+                                <th>
+                                    Email Address
+                                </th>
+                                <th>
+                                    Phone Number
+                                </th>
+                                <th>
+                                    Number of bets
+                                </th>
+                                <th>
+                                    Number of loses
+                                </th>
+                                <th>
+                                    Number of wins
+                                </th>
+                                <th>
+                                    Total Profit
+                                </th>
+                                <th>
+                                    Is Special User
+                                </th>
+                                <th>
+                                    Action&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </th>
+                                </thead>
+                                <tbody>
+                                {% for user in users %}
+                                    <tr>
+                                        <td>
+<div class="modal fade" id="credit-account-{{ user.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="exampleModalLongTitle">Credit Bonus Account</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{% url 'myadmin:credit_user_account' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Bonus balance</label>
+                            <input type="text" name="bonus_balance" value="{{ user.wallet_bonus }}" class="form-control">
+                            <input type="hidden" name="user_id" value="{{ user.id }}">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Credit Account</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+                                        </td>
+                                        <td>{{ forloop.counter }}</td>
+                                        <td>{{ user.username }}</td>
+                                        <td>{{ user.email }}</td>
+                                        <td>{{ user.phone }}</td>
+                                        <td>{{ user.num_bets }}</td>
+                                        <td>{{ user.num_loses }}</td>
+                                        <td>{{ user.num_wins }}</td>
+                                        <td>&#8358; {{ user.profit | intcomma }}</td>
+                                        <td>{{ user.is_moderator|yesno:"YES,NO" }}</td>
+                                        <td>
+                                            <a href="{% url 'myadmin:user_games' user.pk %}"
+                                               class="btn btn-primary btn-sm">See bet history</a>
+                                            {% if user.is_active %}
+                                                <a href="{% url 'myadmin:status_change' user.pk %}" class="btn btn-danger btn-sm"><i
+                                                        class="material-icons">block</i></a>
+                                                <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#credit-account-{{ user.id }}"><i
+                                                        class="material-icons">account_balance_wallet</i></button>
+                                            {% elif not user.is_active %}
+                                                <a href="{% url 'myadmin:status_change' user.pk %}" class="btn btn-success btn-sm"><i
+                                                        class="material-icons">check_circle</i></a>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% empty %}
+                                    <tr>
+                                        <td colspan="100%" class="text-center">No User available</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block outer %}
+    <div class="modal fade" id="user-add" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="exampleModalLongTitle">ADD SPECIAL USER</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{% url 'myadmin:users' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Phone Number</label>
+                            <input type="tel" name="phone" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Username</label>
+                            <input type="text" name="username" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Email Address</label>
+                            <input type="email" name="email" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="bmd-label-floating">Password</label>
+                            <input type="password" name="password" class="form-control">
+                            <input type="hidden" name="is_moderator" value="{{ True }}" class="form-control">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">SAVE USER</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

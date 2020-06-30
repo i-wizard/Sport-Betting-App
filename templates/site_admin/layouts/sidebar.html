@@ -1,0 +1,86 @@
+{% load staticfiles %}
+{% load site_utils %}
+<div class="sidebar" data-color="azure" data-background-color="white"
+     data-image="{% static 'admin/img/sidebar-1.jpg' %}">
+    <div class="logo">
+        <a href="{% url 'myadmin:dashboard' %}" class="simple-text logo-normal">
+            {% site_name %}
+        </a>
+    </div>
+    <div class="sidebar-wrapper">
+        <ul class="nav">
+            <li class="nav-item {% if request.path == '/admin/' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'myadmin:dashboard' %}">
+                    <i class="material-icons">dashboard</i>
+                    <p>Dashboard</p>
+                </a>
+            </li>
+            <li class="nav-item {% if request.path == '/admin/users' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'myadmin:users' %}">
+                    <i class="fa fa-users"></i>
+                    <p>Users</p>
+                </a>
+            </li>
+            <li class="nav-item {% if request.path == '/admin/teams' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'myadmin:teams' %}">
+                    <i class="fa fa-flag-checkered"></i>
+                    <p>Teams</p>
+                </a>
+            </li>
+            <li class="nav-item {% if request.path == '/admin/events' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'myadmin:events' %}">
+                    <i class="fa fa-trophy"></i>
+                    <p>Events</p>
+                </a>
+            </li>
+            <li class="nav-item {% if request.path == '/admin/games' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'myadmin:games' %}">
+                    <i class="material-icons">games</i>
+                    <p>Games</p>
+                </a>
+            </li>
+            <li class="nav-item {% if request.path == '/admin/games/setting' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'myadmin:games_setting' %}">
+                    <i class="material-icons">settings</i>
+                    <p>Games Setting</p>
+                </a>
+            </li>
+            <li class="nav-item {% if request.path == '/admin/images' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'myadmin:images' %}">
+                    <i class="material-icons">photo</i>
+                    <p>Images</p>
+                </a>
+            </li>
+            <li class="nav-item  {% if request.path == '/admin/support' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'myadmin:support' %}">
+                    <i class="material-icons">message</i>
+                    <p>Support</p>
+                </a>
+            </li>
+            <li class="nav-item  {% if request.path == '/admin/messages' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'myadmin:message' %}">
+                    <i class="material-icons">message</i>
+                    <p>Bulk Messaging</p>
+                </a>
+            </li>
+            <li class="nav-item  {% if request.path == '/admin/qualified-players' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'myadmin:qualified_players' %}">
+                    <i class="fa fa-trophy"></i>
+                    <p>Qualified Winners</p>
+                </a>
+            </li>
+            <li class="nav-item  {% if request.path == '/admin/trivia' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'myadmin:trivia' %}">
+                    <i class="fa fa-trophy"></i>
+                    <p>Trivia</p>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="{% url 'logoutPage' %}">
+                    <i class="material-icons">exit_to_app</i>
+                    <p>Logout</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

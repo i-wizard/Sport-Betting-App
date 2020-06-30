@@ -1,0 +1,119 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load site_utils %}
+{% block page_title %}Profile Details - {% site_name %}{% endblock %}
+{% block latter_style %}
+    <link rel="stylesheet" href="{% static 'css/core/profile.css' %}">
+{% endblock %}
+{% block content %}
+    <section class="section section-sm bg-gray-100{% if user.is_authenticated %} push-header{% endif %}">
+        <div class="container">
+            {% if messages %}
+                {% for message in messages %}
+                    <div {% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %}>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            &times;
+                        </button>
+                        <span>
+                                {{ message }}
+                            </span>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            {% if form.non_field_errors %}
+                <div class="alert alert-warning">
+                    {{ form.non_field_errors|striptags }}
+                </div>
+            {% endif %}
+
+
+            <div class="row row-50">
+                <div class="col-xl-8">
+                    <article class="heading-component">
+                        <div class="heading-component-inner">
+                            <h5 class="heading-component-title">Profile Details
+                            </h5>
+                        </div>
+                    </article>
+                    <div class="">
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" class="form-control"
+                                   value="{{ profile_details.username }}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="text" class="form-control" value="{{ profile_details.email }}" readonly>
+                        </div>
+                        <form method="post" action="{% url 'profilePage' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="text" class="form-control"
+                                       value="{{ profile_details.phone }}" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Profile Image</label>
+                                <img src="{% get_media_prefix %}{{ profile_details.profile_image }}"
+                                     class="img-profile img-thumbnail"/>
+                            </div>
+                            <div>
+                                <label>Upload Profile Image</label>
+                                <div class="row" style="margin-top: 5px">
+                                    <div class="col-12 col-sm-6 form-group">
+                                        <input type="file" name="profile_image" class="form-control" accept="image/*">
+                                    </div>
+                                    <div class="col-12 col-sm-6 form-group">
+                                        <gravatar-selection></gravatar-selection>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Update Details</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+                <div class="col-xl-4">
+                    <article class="heading-component">
+                        <div class="heading-component-inner">
+                            <h5 class="heading-component-title">Update password
+                            </h5>
+                        </div>
+                    </article>
+                    <div>
+                        <form method="post" action="{% url 'updatePassword' %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label>Old Password</label>
+                                <input type="password" name="current_password" class="form-control"
+                                       placeholder="Enter Old Password" id="current_password">
+                                <div class="mt-1" style="text-align: center"><input type="checkbox" onclick="showPassword('current_password')">
+                                <b>Show Password</b></div>
+                            </div>
+                            <div class="form-group">
+                                <label>New Password</label>
+                                <input type="password" name="password" class="form-control"
+                                       placeholder="Enter New Password" id="password">
+                                <div class="mt-1" style="text-align: center"><input type="checkbox" onclick="showPassword('password')">
+                                <b>Show Password</b></div>
+                            </div>
+                            <div class="form-group">
+                                <label>Retype New Password</label>
+                                <input type="password" name="retype_password" class="form-control"
+                                       placeholder="Retype New Password" id="retype_password">
+                                <div class="mt-1" style="text-align: center"><input type="checkbox" onclick="showPassword('retype_password')">
+                                <b>Show Password</b></div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Update Password</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

@@ -1,0 +1,108 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load site_utils %}
+{% block page_title %}Soccer Trivia - My Entries{% endblock %}
+{% block latter_style %}
+    <link rel="stylesheet" href="{% static 'css/core/resulting.css' %}">
+{% endblock %}
+{% block content %}
+    <section class="section parallax-container breadcrumbs-wrap{% if user.is_authenticated %} push-header{% endif %}"
+             data-parallax-img="{% static 'images/bg/breadcrumbs-1-1920x726.jpg' %}">
+        <div class="parallax-content breadcrumbs-custom context-dark">
+            <div class="container">
+                <h3 class="breadcrumbs-custom-title">Soccer Trivia - My Entries</h3>
+                <ul class="breadcrumbs-custom-path">
+                    <li><a href="javascript:void(0)" onclick="history.back()">Back</a></li>
+                    <li class="active">Soccer Trivia - My Entries</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-variant-1 bg-gray-100 text-center">
+        <div class="container">
+            {% if messages %}
+                {% for message in messages %}
+                    <div {% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %}>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <i class="fa fa-times"></i>
+                        </button>
+                        <span>
+                                {{ message }}
+                            </span>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <div class="row row-50">
+                <div class="col-xl-12">
+                    <!-- Heading Component-->
+                    <article class="heading-component">
+                        <div class="heading-component-inner">
+                            <h5 class="heading-component-title">Entries
+                            </h5>
+                            <div class="heading-component-aside">
+
+                            </div>
+                        </div>
+                    </article>
+
+                    <div class="mt-2 row">
+
+                        {% for entry in entries %}
+                            <div class="col-12 col-md-6 col-lg-4 result-cont">
+                                <a href="{% url 'trivia:entry' entry.id %}"
+                                   class="game-result game-result-classic d-block text-dark {% if entry.question.status == 'open' %}undefined
+                                            {% elif entry.question.status == 'canceled' %}secondary{% elif entry.question.status == 'resulted' %}{% if entry.status == 'won' %}win{% else %}lose{% endif %}{% endif %}">
+                                    <div class="my-0 mx-0 text-left f-300 px-1 py-1">{{ entry.question.event }}</div>
+                                    <div class="bg-gray-4 py-2">{{ entry.question.closed_at }}</div>
+                                    <div class="__game-result-main">
+                                        <div>{{ entry.question.team_a }} Vs {{ entry.question.team_b }}</div>
+                                        <div class="d-flex justify-content-between">
+                                            <div class="d-flex flex-column align-items-center">
+                                                <img src="{{ entry.question.team_a_logo }}"
+                                                     class="mini-thumb text-center">
+                                                <span class="text-center">{{ entry.question.team_a }}</span>
+                                            </div>
+                                            <div class="d-flex flex-column text-center">
+                                                <div>Prize</div>
+                                                <div><span class="btn btn-success py-1 flat" style="cursor: text">&#8358; 10,000</span>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex flex-column align-items-center">
+                                                <img src="{{ entry.question.team_b_logo }}"
+                                                     class="mini-thumb text-center">
+                                                <span class="text-center">{{ entry.question.team_b }}</span>
+                                            </div>
+                                        </div>
+                                        <span class="btn btn-sm py-1 mt-2 text-light {% if entry.question.status == 'open' %}bg-primary
+                                            {% elif entry.question.status == 'canceled' %}bg-secondary{% elif entry.question.status == 'resulted' %}{% if entry.status == 'won' %}bg-success{% else %}bg-danger{% endif %}{% endif %}" style="cursor: text">
+                                            {% if entry.question.status == 'open' %}
+                                                Open
+                                            {% elif entry.question.status == 'canceled' %}
+                                                Canceled
+                                            {% elif entry.question.status == 'resulted' %}
+                                                {% if entry.status == 'won' %}
+                                                    Won
+                                                {% else %}
+                                                    Lose
+                                                {% endif %}
+                                            {% endif %}
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+                            {% empty %}
+                            <div class="__sport_issue">
+                                <div>
+                                    <div class="__issue_helper">
+                                        You have no entries.
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

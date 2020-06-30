@@ -1,0 +1,173 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load site_utils %}
+{% block page_title %}Soccer Trivia: {{ entry.question.team_a }} Vs {{ entry.question.team_b }}{% endblock %}
+{% block latter_style %}
+    <link rel="stylesheet" href="{% static 'css/core/resulting.css' %}">
+{% endblock %}
+{% block content %}
+    <section class="section parallax-container breadcrumbs-wrap{% if user.is_authenticated %} push-header{% endif %}"
+             data-parallax-img="{% static 'images/bg/breadcrumbs-1-1920x726.jpg' %}">
+        <div class="parallax-content breadcrumbs-custom context-dark">
+            <div class="container">
+                <h3 class="breadcrumbs-custom-title">Match</h3>
+                <ul class="breadcrumbs-custom-path">
+                    <li><a href="javascript:void(0)" onclick="history.back()">Back</a></li>
+                    <li class="active">{{ entry.question.team_a }} Vs {{ entry.question.team_b }}</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-variant-1 bg-gray-100 text-center">
+        <div class="container">
+            <div class="row row-50">
+                <div class="col-xl-12">
+                    <!-- Heading Component-->
+                    <article class="heading-component">
+                        <div class="heading-component-inner">
+                            <h5 class="heading-component-title">{{ entry.question.team_a }}
+                                Vs {{ entry.question.team_b }}
+                            </h5>
+                            <div class="heading-component-aside">
+
+                            </div>
+                        </div>
+                    </article>
+
+                    <div class="mt-2">
+                        <div class="col-12 result-cont">
+                            <div class="game-result game-result-classic d-block text-dark {% if entry.question.status == 'open' %}undefined
+                                            {% elif entry.question.status == 'canceled' %}secondary
+
+                                {% elif entry.question.status == 'resulted' %}{% if entry.status == 'won' %}win{% else %}lose{% endif %}{% endif %}">
+                                <div class="my-0 mx-0 text-left f-300 px-1 py-1">{{ entry.question.event }}</div>
+                                <div class="bg-gray-4 py-2">{{ entry.question.closed_at }}</div>
+                                <div class="__game-result-main">
+                                    <div>{{ entry.question.team_a }} Vs {{ entry.question.team_b }}</div>
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex flex-column align-items-center">
+                                            <img src="{{ entry.question.team_a_logo }}"
+                                                 class="mini-thumb text-center">
+                                            <span class="text-center">{{ entry.question.team_a }}</span>
+                                        </div>
+                                        <div class="d-flex flex-column text-center">
+                                            <div>Prize</div>
+                                            <div><span class="btn btn-success py-1 flat" style="cursor: text">&#8358; 10,000</span>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-column align-items-center">
+                                            <img src="{{ entry.question.team_b_logo }}"
+                                                 class="mini-thumb text-center">
+                                            <span class="text-center">{{ entry.question.team_b }}</span>
+                                        </div>
+                                    </div>
+                                    <ol class="mt-4 mb-3">
+                                        <li>
+                                            <h6 class="f-400 text-left">1. What Will be the fulltime score?</h6>
+                                            <div class="d-flex justify-content-around">
+                                                <input type="tel" name="team_a_score" class="form-control col-4
+{% if entry.question.status == 'resulted' %}
+{% if entry.question.team_a_score == entry.team_a_score %}
+bg-success text-light
+{% endif %}
+{% endif %}"
+                                                       value="{{ entry.team_a_score }}" readonly>
+                                                <input type="tel" name="team_b_score" class="form-control col-4
+{% if entry.question.status == 'resulted' %}
+{% if entry.question.team_b_score == entry.team_b_score %}
+bg-success text-light
+{% endif %}
+{% endif %}"
+                                                       value="{{ entry.team_b_score }}" readonly>
+                                                {% if entry.question.status == 'resulted' %}
+                                                    {% if entry.question.team_a_score == entry.team_a_score and entry.question.team_b_score == entry.team_b_score %}
+                                                        <i class="fa fa-check fa-2x text-success mt-1"></i>
+                                                    {% else %}
+                                                        <i class="fa fa-times fa-2x text-danger mt-1"></i>
+                                                    {% endif %}
+                                                {% endif %}
+                                            </div>
+                                            {% if entry.question.status == 'resulted' %}
+                                                <div class="text-center my-2 {% if entry.question.team_a_score == entry.team_a_score and entry.question.team_b_score == entry.team_b_score %}text-success{% else %}text-danger{% endif %}">
+                                                    Result: {{ entry.question.team_a_score }}
+                                                    - {{ entry.question.team_b_score }}</div>
+                                            {% endif %}
+                                        </li>
+                                        <li class="mt-3">
+                                            <h6 class="f-400 text-left">2. How many penalties will be in this match at full time ?</h6>
+                                            <div class="d-flex justify-content-around">
+                                                <input type="tel" name="total_cards" class="form-control col-4
+{% if entry.question.status == 'resulted' %}
+{% if entry.question.total_cards == entry.total_cards %}
+bg-success text-light
+{% endif %}
+{% endif %}"
+                                                       value="{{ entry.total_cards }}" readonly>
+
+                                                {% if entry.question.status == 'resulted' %}
+                                                    {% if entry.question.total_cards == entry.total_cards %}
+                                                        <i class="fa fa-check fa-2x text-success mt-1"></i>
+                                                    {% else %}
+                                                        <i class="fa fa-times fa-2x text-danger mt-1"></i>
+                                                    {% endif %}
+                                                {% endif %}
+                                            </div>
+                                        {% if entry.question.status == 'resulted' %}
+                                                <div class="text-center my-2 {% if entry.question.total_cards == entry.total_cards %}text-success{% else %}text-danger{% endif %}">
+                                                    Result: {{ entry.question.total_cards }}</div>
+                                            {% endif %}
+                                        </li>
+                                        <li class="mt-3">
+                                            <h6 class="f-400 text-left">3. What will be the total corner kicks at
+                                                fulltime?</h6>
+                                            <div class="d-flex justify-content-around">
+                                                <input type="tel" name="total_corner_kicks" class="form-control col-4
+{% if entry.question.status == 'resulted' %}
+{% if entry.question.total_corner_kicks == entry.total_corner_kicks %}
+bg-success text-light
+{% endif %}
+{% endif %}"
+                                                       value="{{ entry.total_corner_kicks }}" readonly>
+
+                                                {% if entry.question.status == 'resulted' %}
+                                                    {% if entry.question.total_corner_kicks == entry.total_corner_kicks %}
+                                                        <i class="fa fa-check fa-2x text-success mt-1"></i>
+                                                    {% else %}
+                                                        <i class="fa fa-times fa-2x text-danger mt-1"></i>
+                                                    {% endif %}
+                                                {% endif %}
+                                            </div>
+                                        {% if entry.question.status == 'resulted' %}
+                                                <div class="text-center my-2 {% if entry.question.total_corner_kicks == entry.total_corner_kicks %}text-success{% else %}text-danger{% endif %}">
+                                                    Result: {{ entry.question.total_corner_kicks }}</div>
+                                            {% endif %}
+                                        </li>
+                                    </ol>
+                                    <span class="btn btn-sm py-1 mt-2 text-light {% if entry.question.status == 'open' %}bg-primary
+                                            {% elif entry.question.status == 'canceled' %}bg-secondary
+                                        {% elif entry.question.status == 'resulted' %}{% if entry.status == 'won' %}bg-success{% else %}bg-danger{% endif %}{% endif %}"
+                                          style="cursor: text">
+                                            {% if entry.question.status == 'open' %}
+                                                Open
+                                            {% elif entry.question.status == 'canceled' %}
+                                                Canceled
+                                            {% elif entry.question.status == 'resulted' %}
+                                                {% if entry.status == 'won' %}
+                                                    Won
+                                                {% else %}
+                                                    Lose
+                                                {% endif %}
+                                            {% endif %}
+                                        </span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

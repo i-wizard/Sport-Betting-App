@@ -1,0 +1,368 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load site_utils %}
+{% block page_title %}How to Play - {% site_name %}{% endblock %}
+{% block latter_style %}
+    <link rel="stylesheet" href="{% static 'css/core/faq.css' %}">
+{% endblock %}
+{% block content %}
+    <section class="section parallax-container breadcrumbs-wrap{% if user.is_authenticated %} push-header{% endif %}"
+             data-parallax-img="{% static 'images/bg/breadcrumbs-1-1920x726.jpg' %}">
+        <div class="parallax-content breadcrumbs-custom context-dark">
+            <div class="container">
+                <h3 class="breadcrumbs-custom-title">How To Play</h3>
+                <ul class="breadcrumbs-custom-path">
+                    <li><a href="javascript:void(0)" onclick="history.back()">Back</a></li>
+                    <li class="active">How to play</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-sm bg-gray-100">
+        <div class="container">
+            <div class="row row-50">
+                <div class="col-xl-12">
+                    <!-- Heading Component-->
+                    <article class="heading-component">
+                        <div class="heading-component-inner">
+                            <h5 class="heading-component-title">HOW TO PLAY
+                            </h5>
+                            <div class="heading-component-aside">
+
+                            </div>
+                        </div>
+                    </article>
+
+                    <div class="__sport-table">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="accordion cmn-accordion" id="accordionExample">
+                                    <div class="card">
+                                        <div class="card-header" id="headingOne">
+                                            <h2 class="mb-0">
+                                                <button class="btn btn-link" type="button" data-toggle="collapse"
+                                                        data-target="#collapseOne" aria-expanded="true"
+                                                        aria-controls="collapseOne"><i
+                                                        class="fa fa-question-circle"></i>HOW TO PLAY THE GAME
+                                                </button>
+                                            </h2>
+                                        </div>
+                                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                             data-parent="#accordionExample">
+                                            <div class="card-body">
+                                                <p class="mt-1">
+                                                    {#                                                <ul>#}
+                                                <li class="mt-1">Make a selection of either Home win 1, Draw X or Away
+                                                    win 2 for all 10
+                                                    of our daily games (Each correct prediction here is valued at 3
+                                                    points)
+                                                </li>
+                                                <li class="mt-1">
+                                                    Get an extra point by selecting if each game will finish with either
+                                                    under
+                                                    2.5 goals which is 2 goals or less goals or over 2.5 goals which is
+                                                    3 goals
+                                                    or more” (a correct prediction here is valued at 1 point)
+                                                </li>
+                                                <li class="mt-1">
+                                                    After making these selections click play and an entry fee of NGN100
+                                                    is
+                                                    deducted from your Topplaysport account.
+                                                </li>
+                                                <li class="mt-1">
+                                                    All your active and concluded games can be seen in the <a
+                                                        href="{% url 'mybets' %}">MY
+                                                    GAMES</a> section
+                                                </li>
+                                                {#                                                </ul>#}
+                                                </p>
+                                                <p class="mt-1">
+                                                    <strong>Note: You must make both selections for each of the 10 games
+                                                        before
+                                                        you are allowed to play the game.</strong>
+                                                </p>
+                                                <p><strong>The match odds are irrelevant and only act as a guide to
+                                                    reflect the
+                                                    strength of each team!</strong></p>
+                                                <p class="mt-1">
+                                                    <img src="{% static 'images/shots/shot-1.jpg' %}">
+                                                </p>
+
+                                            </div>
+                                        </div>
+                                    </div><!-- card end -->
+                                    <div class="card">
+                                        <div class="card-header" id="headingTwo">
+                                            <h2 class="mb-0">
+                                                <button class="btn btn-link collapsed" type="button"
+                                                        data-toggle="collapse" data-target="#collapseTwo"
+                                                        aria-expanded="false" aria-controls="collapseTwo"><i
+                                                        class="fa fa-question-circle"></i>DOUBLE CHANCE
+                                                </button>
+                                            </h2>
+                                        </div>
+                                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                             data-parent="#accordionExample">
+                                            <div class="card-body">
+                                                <p>
+                                                <li class="mt-1">
+                                                    You can create a double chance for each game e.g (Home win or
+                                                    draw 1X OR an Away win or draw X2 OR any team to win 12) by
+                                                    clicking on the Home or Away win and also clicking on Draw X OR
+                                                    clicking on both the home team and away team
+                                                </li>
+                                                <li class="mt-1">
+                                                    For each game you create a double chance for, an extra fee of
+                                                    50naira is charged
+                                                </li>
+                                                </p>
+                                                <p class="mt-1">
+                                                    <img src="{% static 'images/shots/shot-2.jpg' %}">
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div><!-- card end -->
+                                    <div class="card">
+                                        <div class="card-header" id="headingThree">
+                                            <h2 class="mb-0">
+                                                <button class="btn btn-link collapsed" type="button"
+                                                        data-toggle="collapse" data-target="#collapseThree"
+                                                        aria-expanded="false" aria-controls="collapseThree"><i
+                                                        class="fa fa-question-circle"></i>WINNING
+                                                </button>
+                                            </h2>
+                                        </div>
+                                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                             data-parent="#accordionExample">
+                                            <div class="card-body">
+                                                <p>
+                                                <li class="mt-1">
+                                                    After the last football match of the day is played, the top 20 users
+                                                    with the highest point get NGN2,000 each as a cash reward for
+                                                    there predictions
+                                                </li>
+                                                <li class="mt-1">
+                                                    Their Topplaysport main account is immediately credited.
+                                                </li>
+                                                <li class="mt-1">
+                                                    These winners are proudly displayed on the <a href="/bets/winners">Winners
+                                                    chart</a>
+                                                </li>
+                                                </p>
+                                                <p class="mt-1">
+                                                    <strong>NOTE: You do not have to get all predictions correct (40/40
+                                                        points)
+                                                        to win. You just have to be among the top 20 users with the
+                                                        highest
+                                                        point. So your chances of winning depends on the general
+                                                        performance of other users.</strong>
+                                                </p>
+                                                <p class="mt-1">
+                                                    <strong>NOTE: in the event of a tie in point among winners, the Cash
+                                                        reward relative to that position on the winner&#39;s chart will
+                                                        be
+                                                        shared among the respective&quot;tied&quot; players.</strong>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div><!-- card end -->
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="accordion cmn-accordion" id="accordionExample2">
+                                    <div class="card">
+                                        <div class="card-header" id="headingFive">
+                                            <h2 class="mb-0">
+                                                <button class="btn btn-link" type="button" data-toggle="collapse"
+                                                        data-target="#collapseFive" aria-expanded=false"
+                                                        aria-controls="collapseFive"><i
+                                                        class="fa fa-question-circle"></i>THE WEEKEND GIVEAWAY
+                                                </button>
+                                            </h2>
+                                        </div>
+                                        <div id="collapseFive" class="collapse" aria-labelledby="headingFive"
+                                             data-parent="#accordionExample2">
+                                            <div class="card-body">
+                                                <p>
+                                                <li class="mt-1">
+                                                    The free weekend giveaway is a loyalty reward program that
+                                                    rewards only users that have played a minimum of five (5) bet
+                                                    slips within the week
+                                                </li>
+                                                <li class="mt-1">
+                                                    Only these users can qualify for the free weekend giveaway.
+                                                </li>
+                                                <li class="mt-1">
+                                                    This giveaway is conducted as a raffle draw where the raffle
+                                                    system randomly picks 20 of all qualified users to have a share
+                                                    in a NGN20,000! (NGN1,000 each)
+                                                </li>
+                                                <li class="mt-1">
+                                                    This program is conducted every Sunday by 8pm and the
+                                                    winners can be seen on the <a
+                                                        href='{% url 'jackpot_winners' %}'>giveaway winners list</a>
+                                                </li>
+                                                </p>
+                                                <p class="mt-1">
+                                                    <strong>NOTE: if a user plays up to 5 game slips within the week,
+                                                        apart
+                                                        from standing a chance to win NGN1,000 in the giveaway, that
+                                                        user also gets a guaranteed NGN200 in their bonus account
+                                                        instantly.</strong>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div><!-- card end -->
+                                    <div class="card">
+                                        <div class="card-header" id="headingSix">
+                                            <h2 class="mb-0">
+                                                <button class="btn btn-link collapsed" type="button"
+                                                        data-toggle="collapse" data-target="#collapseSix"
+                                                        aria-expanded="false" aria-controls="collapseSix"><i
+                                                        class="fa fa-question-circle"></i>REFERRAL BONUSES
+                                                </button>
+                                            </h2>
+                                        </div>
+                                        <div id="collapseSix" class="collapse" aria-labelledby="headingSix"
+                                             data-parent="#accordionExample2">
+                                            <div class="card-body">
+                                                <p>
+                                                <li class="mt-1">
+                                                    A user can get a NGN100 bonus by referring a friend to
+                                                    register on Topplaysport.com using the user’s referral
+                                                    code, this code is located at the GET
+                                                    BONUS section on the menu bar
+                                                </li>
+                                                <li class="mt-1">
+                                                    The user will only get this NGN100 bonus when the
+                                                    registered friend makes the first deposit
+                                                </li>
+                                                <li class="mt-1">
+                                                    Bonuses are displayed on the bonus account balance,
+                                                    these bonuses cannot be withdrawn, they can only be used
+                                                    to play games
+                                                </li>
+                                                <li class="mt-1">
+                                                    A player can use from this bonus by clicking the checkbox
+                                                    “Use From Bonus Account” before clicking on the “Play”
+                                                    button
+                                                </li>
+                                                </p>
+                                                <p class="mt-1">
+                                                    <strong>NOTE: A user can decide to either be charged from his main
+                                                        account or the bonus account if it contains any
+                                                        bonuses.</strong>
+                                                </p>
+                                                <p class="mt-1">
+                                                    <img src="{% static 'images/shots/shot-3.png' %}">
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div><!-- card end -->
+                                    <div class="card">
+                                        <div class="card-header" id="headingSeven">
+                                            <h2 class="mb-0">
+                                                <button class="btn btn-link collapsed" type="button"
+                                                        data-toggle="collapse" data-target="#collapseSeven"
+                                                        aria-expanded="false" aria-controls="collapseSeven"><i
+                                                        class="fa fa-question-circle"></i>DEPOSIT AND WITHDRAWAL
+                                                </button>
+                                            </h2>
+                                        </div>
+                                        <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven"
+                                             data-parent="#accordionExample2">
+                                            <div class="card-body">
+                                                <p>
+                                                <li class="mt-1">
+                                                    Deposits can be made with a debit card or can be done
+                                                    directly from the user’s bank account or with Gtbank&#39;s
+                                                    USSD code (zero extra charge)
+                                                </li>
+                                                <li class="mt-1">
+                                                    Minimum deposit is 100 naira
+                                                </li>
+                                                <li class="mt-1">
+                                                    Withdrawals can be made to the bank account provided
+                                                    by the user
+                                                </li>
+                                                <li class="mt-1">
+                                                    The minimum withdrawal is NGN100, but withdrawals
+                                                    below NGN1,000 will attract a service charge of 50naira
+                                                </li>
+                                                <li class="mt-1">
+                                                    The maximum withdrawal per day is 50,000 naira.
+                                                </li>
+                                                </p>
+                                                <p class="mt-1">
+                                                    <strong>NOTE: after the first successful withdrawal the user’s bank
+                                                        account details are automatically saved and the
+                                                        Topplaysport login password will be required to change
+                                                        these bank account detail.</strong>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div><!-- card end -->
+                                    <div class="card">
+                                        <div class="card-header" id="headingNine">
+                                            <h2 class="mb-0">
+                                                <button class="btn btn-link collapsed" type="button"
+                                                        data-toggle="collapse" data-target="#collapseNine"
+                                                        aria-expanded="false" aria-controls="collapseNine"><i
+                                                        class="fa fa-question-circle"></i>SOCCER TRIVIA
+                                                </button>
+                                            </h2>
+                                        </div>
+                                        <div id="collapseNine" class="collapse" aria-labelledby="headingNine"
+                                             data-parent="#accordionExample2">
+                                            <div class="card-body">
+                                                <p>
+                                                <li class="mt-1">
+                                                    Answer 3 questions correctly about a scheduled soccer match and win NGN 10,000 instantly. 
+                                                </li>
+                                                <li class="mt-1">
+                                                    The entry fee For the trivia is NGN20 and you can play as many times as you want.
+                                                </li>
+                                                <li class="mt-1">
+                                                    Check "MY ENTRIES" on the trivia page to see all your active trivia games.
+                                                </li>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div><!-- card end -->
+                                    <div class="card">
+                                        <div class="card-header" id="headingEight">
+                                            <h2 class="mb-0">
+                                                <button class="btn btn-link collapsed" type="button"
+                                                        data-toggle="collapse" data-target="#collapseEight"
+                                                        aria-expanded="false" aria-controls="collapseEight"><i
+                                                        class="fa fa-question-circle"></i>PROMOTIONS
+                                                </button>
+                                            </h2>
+                                        </div>
+                                        <div id="collapseEight" class="collapse" aria-labelledby="headingEight"
+                                             data-parent="#accordionExample2">
+                                            <div class="card-body">
+                                                <p>
+                                                <li class="mt-1">
+                                                    Promos and special games might be offered
+                                                    occasionally
+                                                </li>
+                                                <li class="mt-1">
+                                                    These promos and special games will be advertised
+                                                    in advance on the homepage, social media pages and
+                                                    through the users registered email address.
+                                                </li>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div><!-- card end -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}

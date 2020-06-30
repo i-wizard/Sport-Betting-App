@@ -1,0 +1,225 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load site_utils %}
+{% block page_title %}FAQs - {% site_name %}{% endblock %}
+{% block latter_style %}
+    <link rel="stylesheet" href="{% static 'css/core/faq.css' %}">
+{% endblock %}
+{% block content %}
+    <section class="section parallax-container breadcrumbs-wrap{% if user.is_authenticated %} push-header{% endif %}"
+             data-parallax-img="{% static 'images/bg/breadcrumbs-1-1920x726.jpg' %}">
+        <div class="parallax-content breadcrumbs-custom context-dark">
+            <div class="container">
+                <h3 class="breadcrumbs-custom-title">Frequently Asked Questions</h3>
+                <ul class="breadcrumbs-custom-path">
+                    <li><a href="javascript:void(0)" onclick="history.back()">Back</a></li>
+                    <li class="active">FAQs</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-sm bg-gray-100">
+        <div class="container">
+            <div class="row row-50">
+                <div class="col-xl-12">
+                    <!-- Heading Component-->
+                    <article class="heading-component">
+                        <div class="heading-component-inner">
+                            <h5 class="heading-component-title">FAQs
+                            </h5>
+                            <div class="heading-component-aside">
+
+                            </div>
+                        </div>
+                    </article>
+
+                    <div class="__sport-table">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="accordion cmn-accordion" id="accordionExample">
+                                    <div class="card">
+                                        <div class="card-header" id="headingOne">
+                                            <h2 class="mb-0">
+                                                <button class="btn btn-link" type="button" data-toggle="collapse"
+                                                        data-target="#collapseOne" aria-expanded="true"
+                                                        aria-controls="collapseOne"><i
+                                                        class="fa fa-question-circle"></i>WHAT IS TOPPLAYSPORT?
+                                                </button>
+                                            </h2>
+                                        </div>
+                                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                             data-parent="#accordionExample">
+                                            <div class="card-body">
+                                                <p>Topplaysport is a competitive soccer prediction site where
+                                                    participants
+                                                    compete against themselves for a share in guaranteed daily cash
+                                                    reward. They
+                                                    do this by predicting the outcome of 10 soccer games, with each
+                                                    correct
+                                                    prediction having a value of four (4) points, so a correct
+                                                    prediction in all 10
+                                                    games results in 40points. The Top 20 users with the highest point
+                                                    for the day
+                                                    get NGN2,000 each everyday.</p>
+                                            </div>
+                                        </div>
+                                    </div><!-- card end -->
+                                    <div class="card">
+                                        <div class="card-header" id="headingTwo">
+                                            <h2 class="mb-0">
+                                                <button class="btn btn-link collapsed" type="button"
+                                                        data-toggle="collapse" data-target="#collapseTwo"
+                                                        aria-expanded="false" aria-controls="collapseTwo"><i
+                                                        class="fa fa-question-circle"></i>MUST I GET 40/40 Points TO
+                                                    WIN?
+                                                </button>
+                                            </h2>
+                                        </div>
+                                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                             data-parent="#accordionExample">
+                                            <div class="card-body">
+                                                <p><strong>NO!</strong> Unlike the conventional betting system, you do
+                                                    not have to get all
+                                                    predictions correct (40/40) to win. You just have to be among the
+                                                    top 20 users
+                                                    with the highest point in order to partake in a share of the daily
+                                                    cash reward.
+                                                    So your chances of winning depends on the general performance of
+                                                    other
+                                                    players.</p>
+                                            </div>
+                                        </div>
+                                    </div><!-- card end -->
+                                    <div class="card">
+                                        <div class="card-header" id="headingAfterTwo">
+                                            <h2 class="mb-0">
+                                                <button class="btn btn-link collapsed" type="button"
+                                                        data-toggle="collapse" data-target="#collapseAfterTwo"
+                                                        aria-expanded="false" aria-controls="collapseAfterTwo"><i
+                                                        class="fa fa-question-circle"></i>HOW DO I PLAY?
+                                                </button>
+                                            </h2>
+                                        </div>
+                                        <div id="collapseAfterTwo" class="collapse" aria-labelledby="headingAfterTwo"
+                                             data-parent="#accordionExample">
+                                            <div class="card-body">
+                                                <p>Make a selection of either Home win 1, Draw X or Away win 2 (Each
+                                                    correct
+                                                    prediction here is valued at 3 points) for all 10 of our daily games
+                                                    and also get
+                                                    an extra 1 point by selecting if each game will finish with either
+                                                    under 2.5 goals
+                                                    or over 2.5 goals. After making these selections click play. For
+                                                    more
+                                                    information on how to play click here “<a href="/how-to-play">How To
+                                                        Play</a>”</p>
+                                            </div>
+                                        </div>
+                                    </div><!-- card end -->
+                                    <div class="card">
+                                        <div class="card-header" id="headingThree">
+                                            <h2 class="mb-0">
+                                                <button class="btn btn-link collapsed" type="button"
+                                                        data-toggle="collapse" data-target="#collapseThree"
+                                                        aria-expanded="false" aria-controls="collapseThree"><i
+                                                        class="fa fa-question-circle"></i>WHAT IS AN “EXTRA POINT”?
+                                                </button>
+                                            </h2>
+                                        </div>
+                                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                             data-parent="#accordionExample">
+                                            <div class="card-body">
+                                                <p>An “Extra Point” is an additional one (1) point that will be added
+                                                    for a user if he
+                                                    correctly predicts whether a match will end with either under 2.5
+                                                    goals or Over
+                                                    2.5 goals. But if the user predicts wrongly its does not affect the
+                                                    normal 3
+                                                    points awarded for a correct prediction in the “1X2” section</p>
+                                            </div>
+                                        </div>
+                                    </div><!-- card end -->
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="accordion cmn-accordion" id="accordionExample2">
+                                    <div class="card">
+                                        <div class="card-header" id="headingFive">
+                                            <h2 class="mb-0">
+                                                <button class="btn btn-link" type="button" data-toggle="collapse"
+                                                        data-target="#collapseFive" aria-expanded=false"
+                                                        aria-controls="collapseFive"><i
+                                                        class="fa fa-question-circle"></i>WHAT IS THE FREE WEEKEND
+                                                    GIVEAWAY?
+                                                </button>
+                                            </h2>
+                                        </div>
+                                        <div id="collapseFive" class="collapse" aria-labelledby="headingFive"
+                                             data-parent="#accordionExample2">
+                                            <div class="card-body">
+                                                <p>The free weekend giveaway is a loyalty reward program and only users
+                                                    that
+                                                    have played a minimum of five (5) bet slips within the week can
+                                                    qualify for the
+                                                    free weekend giveaway. The free weekend giveaway is a raffle draw
+                                                    that occurs by 8pm (WAT) every Sunday. The raffle draw system
+                                                    randomly selects
+                                                    20 of all the qualified users to share in a NGN20,000 giveaway
+                                                    prize!</p>
+                                                <p><strong>NOTE: if a user plays up to 5 game slips within the week,
+                                                    apart from standing
+                                                    a chance to win NGN1,000 in the giveaway, that user also gets a
+                                                    guaranteed
+                                                    NGN200 in their bonus account instantly.</strong></p>
+                                            </div>
+                                        </div>
+                                    </div><!-- card end -->
+                                    <div class="card">
+                                        <div class="card-header" id="headingSix">
+                                            <h2 class="mb-0">
+                                                <button class="btn btn-link collapsed" type="button"
+                                                        data-toggle="collapse" data-target="#collapseSix"
+                                                        aria-expanded="false" aria-controls="collapseSix"><i
+                                                        class="fa fa-question-circle"></i>SOCCER QUIZ
+                                                </button>
+                                            </h2>
+                                        </div>
+                                        <div id="collapseSix" class="collapse" aria-labelledby="headingSix"
+                                             data-parent="#accordionExample2">
+                                            <div class="card-body">
+                                                <p>This is an instant way of making cool cash on the platform, all you need to do is
+to answer 3 questions correctly about one soccer game and win NGN10,000
+instantly with as little as NGN20.</p>
+                                            </div>
+                                        </div>
+                                    </div><!-- card end -->
+                                    <div class="card">
+                                        <div class="card-header" id="headingSeven">
+                                            <h2 class="mb-0">
+                                                <button class="btn btn-link collapsed" type="button"
+                                                        data-toggle="collapse" data-target="#collapseSeven"
+                                                        aria-expanded="false" aria-controls="collapseSeven"><i
+                                                        class="fa fa-question-circle"></i>WHO DO I CONTACT FOR HELP?
+                                                </button>
+                                            </h2>
+                                        </div>
+                                        <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven"
+                                             data-parent="#accordionExample2">
+                                            <div class="card-body">
+                                                <p>If you need quick help you can chat with our online customer care
+                                                    assistant or you can email us at <a
+                                                            href="mailto:help@topplaysport.com">help@topplaysport.com</a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div><!-- card end -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
